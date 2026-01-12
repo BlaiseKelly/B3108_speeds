@@ -135,12 +135,10 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#economic-impact" id="toc-economic-impact" class="nav-link" data-scroll-target="#economic-impact">Economic impact</a>
   <ul class="collapse">
   <li><a href="#trip-data" id="toc-trip-data" class="nav-link" data-scroll-target="#trip-data">Trip data</a></li>
-  <li><a href="#values-of-time" id="toc-values-of-time" class="nav-link" data-scroll-target="#values-of-time">Values of time</a></li>
+  <li><a href="#value-of-time" id="toc-value-of-time" class="nav-link" data-scroll-target="#value-of-time">Value of time</a></li>
   <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population">population</a></li>
   <li><a href="#collision-costs" id="toc-collision-costs" class="nav-link" data-scroll-target="#collision-costs">Collision costs</a></li>
-  <li><a href="#average-speeds" id="toc-average-speeds" class="nav-link" data-scroll-target="#average-speeds">Average speeds</a></li>
   </ul></li>
-  <li><a href="#cycle-infrastructure-benefits" id="toc-cycle-infrastructure-benefits" class="nav-link" data-scroll-target="#cycle-infrastructure-benefits">Cycle infrastructure benefits</a></li>
   <li><a href="#air-pollution" id="toc-air-pollution" class="nav-link" data-scroll-target="#air-pollution">Air pollution</a></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
@@ -192,7 +190,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>That speeds are already on average in the same ballpark as proposed speed limits<br>
 </li>
-<li>Cost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips</li>
+<li>Cost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips. TAG guidance reflect more value than time for an employed person using the road.</li>
 <li>That a significant number of people live along the road, with numerous properties fronting onto the road.</li>
 </ul>
 <section id="typical-speeds" class="level2">
@@ -244,18 +242,18 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="economic-impact" class="level1">
 <h1>Economic impact</h1>
-<p>The DfT uses TAG data to attribute value to decisions such as speed limit changes.</p>
+<p>The DfT uses TAG data to attribute value to decisions. There has been a lot of criticism of this approach, especially when it is</p>
+<p>The market price of journey times is often mentioned. But it also includes: - Monetary valuation of changes in noise - Damage cost and marginal abatement cost values by pollutant - £ per tonne of CO<sub>2</sub>e emissions - Value of prevention per collision - Value of improving active travel infrastructure - Social impacts of public transport</p>
 <section id="trip-data" class="level2">
 <h2 class="anchored" data-anchor-id="trip-data">Trip data</h2>
 <p>The DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.</p>
 <p>In 2024 it was estimated that Annual Average Daily Trips (AADT) <a href="https://www.gov.uk/government/statistics/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024">were similar to 2019</a>. Therefore, 2019 traffic data has been used for this analysis.</p>
-<p>On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.</p>
-<p><img src="plots/AADT_direction.png" class="img-fluid"></p>
+<p>On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction. <img src="plots/AADT_direction.png" class="img-fluid"></p>
 </section>
-<section id="values-of-time" class="level2">
-<h2 class="anchored" data-anchor-id="values-of-time">Values of time</h2>
-<p>Tables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy</p>
-<p>Calculating this for each scenario by direction gives: <img src="plots/CST_WE.png" class="img-fluid"> <img src="plots/CST_EW.png" class="img-fluid"></p>
+<section id="value-of-time" class="level2">
+<h2 class="anchored" data-anchor-id="value-of-time">Value of time</h2>
+<p>Tables A1.3.1-A1.3.5 from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy</p>
+<p>Calculating for each scenario by direction gives: <img src="plots/CST_WE.png" class="img-fluid"> <img src="plots/CST_EW.png" class="img-fluid"></p>
 <p>The TAG perceived loss to the market for each Scenario over the course of a year is:<br>
 - A: £1,644<br>
 - B: £661,576<br>
@@ -272,29 +270,21 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="collision-costs" class="level2">
 <h2 class="anchored" data-anchor-id="collision-costs">Collision costs</h2>
-<p>It is estimated that road traffic collisions cost the UK economy £55 billion in 2024. Of this £14 billion are injury costs.</p>
-<p>Between 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.</p>
-<p>Applying the methodology from TAG to the collisions along B3108</p>
-<p><img src="plots/collisions_value.png" class="img-fluid"></p>
-</section>
-<section id="average-speeds" class="level2">
-<h2 class="anchored" data-anchor-id="average-speeds">Average speeds</h2>
-</section>
-</section>
-<section id="cycle-infrastructure-benefits" class="level1">
-<h1>Cycle infrastructure benefits</h1>
-<p>Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road, such as the AI generated image below. <img src="data/ChatGPT Image Jan 12, 2026, 10_40_06 AM.png" class="img-fluid"> TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.</p>
+<p>Between 2010 and 2024 there were 57 collisions resulting in 74 casualties reported to the Police, these are plotted below: <img src="plots/cas_type_sev_map.png" class="img-fluid"> In Bradford on Avon it is mostly Pedestrians and along the bypass it is predominantly motorists and Winsley Hill Cyclists.</p>
+<p>Applying the methodology from TAG to the collisions along B3108 and summing per link gives an estimate for the value of prevention per year. <img src="plots/collisions_value.png" class="img-fluid"> ## Cycle infrastructure benefits Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road, such as the AI generated image below. <img src="data/ChatGPT Image Jan 12, 2026, 10_40_06 AM.png" class="img-fluid"> TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.</p>
 <p>Using the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, could be quantified at over £30,000 per year to the 500+ cyclists who currently use the road every week. Adding this, along with a high quality footpath, could reduce the road width, also reduce the speed of vehicles down the road. It would also become an artery for active travel through the area.</p>
 <p>One of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.</p>
 <p>(map of LSOA of drivers)</p>
 </section>
+</section>
 <section id="air-pollution" class="level1">
 <h1>Air pollution</h1>
 <p>The image below shows an example of NO<sub>2</sub> drop off calculated with the <a href="https://laqm.defra.gov.uk/air-quality/air-quality-assessment/no2-falloff/">Defra NO<sub>2</sub> drop off tool</a>. NO<sub>2</sub> reacts with the atmosphere and drops off relatively quickly from the roadside. Even without any changes to the vehicle fleet or number of vehicles using the road, it is estimated that <a href="https://www.cibse.org/media/tw0bfknn/ukueq-white-paper-the-urban-emergency-main-page-v01.pdf">increasing the source (vehicles) and receptor (buildings) distance by 2m NO<sub>2</sub> would be 14% lower at the receptors</a> <img src="data/no2_dropoff.png" class="img-fluid"></p>
+<p>TAG sheet A3.3 Table A 3.2.2 Gives a damage cost value range based on incremental concentrations. Assuming a roadside NO<sub>2</sub> concentration between 10ug/m3 and 40ug/m^3 and taking the lower and upper monetary estimates the benefit of reducing roadside concentrations by 14% for the population living next to the road would be between £1,546 and £239,733 just for NO<sub>2</sub>.</p>
 </section>
 <section id="summary" class="level1">
 <h1>Summary</h1>
-<p>Adding cycle path: £30,000 Collision Avoidance: £245,205 Reducing speed limit: Scenario A: -£1,643 Scenario B: -£661,576 Scenario C: -£801,843 Scenario D: -£4,087,308 Noise reduction: Air Pollution:</p>
+<p>Adding cycle path: £30,000 Collision Avoidance: £245,205 Reducing speed limit: Scenario A: -£1,643 Scenario B: -£661,576 Scenario C: -£801,843 Scenario D: -£4,087,308 Noise reduction: Air Pollution: £1,546 - £239,733</p>
 </section>
 <section id="appendix" class="level1">
 <h1>Appendix</h1>
