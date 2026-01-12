@@ -4,6 +4,7 @@ library(dplyr)
 library(eurostat)
 library(osmdata)
 library(osmactive)
+library(tmap)
 
 source("../stats19_stats/R/get.R")
 source("../stats19_stats/R/plots.R")
@@ -18,6 +19,9 @@ crashes = get_stats19(year = 2004,type = "collision") |>
   st_transform(4326)
 
 casualties = get_stats19(year = 2004, type = "casualty") |> 
+  filter(collision_index %in% crashes$collision_index)
+
+vehicles = get_stats19(year = 2004, type = "vehicle") |> 
   filter(collision_index %in% crashes$collision_index)
 
 # create a geo referenced point
@@ -137,6 +141,43 @@ all_rds_buff = st_buffer(all_rds,100) |>
 
 crashes_B3108 = crashes[osm_buff,]
 
+crashes_B3108 = match_tag(crashes_B3108)
+
+tot_cost = sum(crashes_B3108$cost_per_collision)
+
+crashes_B3108$ID = all_rds$ID[st_nearest_feature(crashes_B3108,all_rds)]
+
+crashes_cost = crashes_B3108 |> 
+  st_set_geometry(NULL) |> 
+  group_by(ID) |> 
+  summarise(total_cost = sum(cost_per_collision)/15) |> 
+  left_join(all_rds, by = "ID")
+
+st_geometry(crashes_cost) = crashes_cost$x
+
+# get background map
+bg <- basemaps::basemap_raster(osm_buff, map_service = "carto",increase_zoom =2, map_type = "light")
+
+tm_1 <- tm_shape(bg)+
+  tm_rgb()+
+  tm_shape(crashes_cost) +
+  tm_lines(col = "total_cost",col_alpha = 1,
+              col.scale = tm_scale_intervals(values = "tol.rainbow_wh_br"),
+              col.legend = tm_legend("value (£)", frame = FALSE,legend.border.col = NA,
+                                     position = c(0.8,0.93)),
+              lwd = 8)+
+  tm_title("Value of prevention of collisionss along B3108 per year (Period: 2010-2024)",size = 1.5)+
+  tm_layout(frame = FALSE)  
+
+tmap_save(tm_1, "plots/collisions_value.png")
+
+casualties_B3108 = casualties |> 
+  filter(collision_index %in% crashes_B3108$collision_index) |> 
+  mutate(fatal_count = if_else(casualty_severity == "Fatal", 1, 0))
+
+lsoa_home = lsoa_home_plot(casualty_df = casualties_B3108,lsoa_geo = )
+
+
 ## import nuts geo lvel 3 (cities) from eurostat and filter for UK
 uk_LA <- get_eurostat_geospatial("sf", resolution = "01", nuts_level = "3", "2021", crs = "4326", update_cache = TRUE) |>
   filter(CNTR_CODE == "UK")
@@ -148,6 +189,8 @@ mapview(Wiltshire)
 crashes_wiltshire = crashes[Wiltshire,] 
 
 crashes_wiltshire = match_tag(crashes_wiltshire)
+
+tot_cost = sum(crashes_wiltshire$cost_per_collision)/15
 
 casualties_wiltshire = casualties |> 
   filter(collision_index %in% crashes_wiltshire$collision_index) |> 

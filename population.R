@@ -58,10 +58,10 @@ buildings = buildings_raw |>
   filter(building %in% c("residential","hall_of_residence","semidetached_house","terrace","apartments","house","detached","farm","dormitory","bungalow",NA,"assisted_living","yes"))
 
 
-lsoa_rd_area = lsoa_rd |> 
-  mutate(area_100m = as.numeric(st_area(geometry))) |>
-  left_join(lsoa_area, by = "lsoa21_code") |> 
-  mutate(area_frac = area_100m/area)
+# lsoa_rd_area = lsoa_rd |> 
+#   mutate(area_100m = as.numeric(st_area(geometry))) |>
+#   left_join(lsoa_area, by = "lsoa21_code") |> 
+#   mutate(area_frac = area_100m/area)
 
 
 # import LSOA population for GB
@@ -106,7 +106,8 @@ buildings_roadside = buildings_lsoa |>
   st_set_geometry(NULL) |> 
   group_by(ID_2) |> 
   summarise(total_pop = sum(building_pop)) |> 
-  left_join(rd_buff_both, by = "ID_2")
+  left_join(rd_buff_both, by = "ID_2") |> 
+  filter(!is.na(ID_2))
 
 st_geometry(buildings_roadside) = buildings_roadside$x
 
@@ -115,7 +116,7 @@ sum(buildings_roadside$total_pop,na.rm = TRUE)
 
 mapview(buildings_roadside['total_pop'])
 
-for (p in rd_buff$ID){}
+for (p in rd_buff$ID){
   sf_split = rd_buff |> 
     filter(ID == p) |> 
     st_split(all_rds_union)
@@ -164,7 +165,7 @@ bg <- basemaps::basemap_raster(osm_buff, map_service = "carto",increase_zoom =2,
 tm_lsoa_pop <- tm_shape(bg)+
   tm_rgb()+
   tm_shape(buildings_roadside) +
-  tm_polygons(fill = "total_pop",fill_alpha = 0.4,
+  tm_polygons(fill = "total_pop",fill_alpha = 1,
               fill.scale = tm_scale_intervals(values = "tol.rainbow_wh_br", style = "pretty",n = 8),
               fill.legend = tm_legend("population", frame = FALSE,legend.border.col = NA),
               lwd = 0.5)+

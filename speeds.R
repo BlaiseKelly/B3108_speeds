@@ -14,6 +14,7 @@ library(osmactive)
 library(osmdata)
 library(tmap)
 library(tmap.networks)
+library(openxlsx)
 
 source("../stats19_stats/R/get.R")
 
@@ -22,7 +23,7 @@ select <- dplyr::select
 ## enter google console distance api key
 api_key <- NULL
 
-library(openxlsx)
+
 
 load("data/run_03012026.RData")
 
@@ -148,7 +149,7 @@ AADT_dir = AADT_d8s |>
   group_by(date,direction_of_travel) |>
   summarise(raw_count = sum(raw_count,na.rm = TRUE))
 
-p1 = timeVariation(AADT_dir, "raw_count", group = "direction_of_travel", name.pol = namez,ylab = "vehicles", main = "Trips by direction")
+p1 = timeVariation(AADT_dir, "raw_count", group = "direction_of_travel",ylab = "vehicles", main = "Trips by direction")
 
 AADT_tots = AADT_dir |>
   mutate(hour = hour(date)) |>
@@ -519,8 +520,9 @@ journey_trips = link_speed_dat |>
 
 onroad_cycle_track_p_min = 5.22
 
-cycle_path_benefit_pence = (sum(journey_trips$cycle_time_tot,na.rm = TRUE)/60)*onroad_cycle_track_p_min*52
+cycle_path_benefit_pounds = (sum(journey_trips$cycle_time_tot,na.rm = TRUE)/60)*onroad_cycle_track_p_min*52/100
 
+tot_bike_trips = sum(journey_trips$pedal_cycles,na.rm = TRUE)/6
 
 save(AADT_diurnal_direction,journey_times_link, file = "data/table_dat.RData")
 
@@ -684,9 +686,6 @@ for (l in all_rds$ID){
 
 }
 
-link_plots = tmap_arrange(L01,L02,L03,L04,L05,L06, ncol = 3,nrow = 2)
-
-tmap_save(link_plots, paste0("plots/link_plots.png"),width = 3000, height = 3000)
 
 link_cost_sf = link_cost |>
   left_join(all_rds, by = "ID") |>

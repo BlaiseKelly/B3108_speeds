@@ -1,25 +1,25 @@
 ---
-title: "B3108"
+title: "B3108 Speed Limit Analysis"
 author: "Blaise Kelly"
+date: "12-01-2026"
 format: html
 editor: visual
 ---
 
 # Introduction
 
-The B3108 goes between Bath
+The B3108 runs north of Winsley conurbation connecting Warminster Road in the West, with Bath Road in Bradford on Avon.
 
-Some data goes back to 2010. The road has not changed significantly in that time 
+There have been on-going discussions regarding the speed limit on this road. This document aims to expand on some of the points mentioned in Briefing Note: "B3108 Winsley Bypass" published in November 2022.  
+
+ - That speeds are already on average in the same ballpark as proposed speed limits  
+ - Cost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips. TAG guidance reflect more value than time for an employed person using the road.
+ - That a significant number of people live along the road, with numerous properties fronting onto the road.
 
 ## Typical speeds
+In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the "best guess" parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. 
 
-The Google Distance Matrix API enables a query between two points for a future date and using the "best guess" returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.
-
-TAG cost guidance provides costs for
-
-The Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix
-
-The road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.
+The road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.
 
 ![](plots/L01.png)
 ![](plots/speed_profile_L01_dayhour.png) 
@@ -37,8 +37,7 @@ L04 is the 50mph section of the bypass, stretching all the way to the roundabout
 L05 is the 40 mph section of Winsley Road 
 ![](plots/L05.png) 
 ![](plots/speed_profile_L05_dayhour.png) 
-
-L06 the 30mph section of Winsley Road. 
+L06 is the 30mph section of Winsley Road. 
 ![](plots/L06.png) 
 ![](plots/speed_profile_L06_dayhour.png)
 
@@ -90,13 +89,28 @@ The current situation is not visible on the plot, because it is behind Scenario 
 
 # Economic impact
 
-The DfT uses TAG data to attribute value to decisions such as speed limit changes.
+The DfT uses TAG data to attribute value to decisions. There has been a lot of criticism of this approach, especially when it is 
 
-## Values of time
+The market price of journey times is often mentioned. But it also includes:
+ - Monetary valuation of changes in noise
+ - Damage cost and marginal abatement cost values by pollutant
+ - £ per tonne of CO~2~e emissions
+ - Value of prevention per collision
+ - Value of improving active travel infrastructure
+ - Social impacts of public transport
 
-Tables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy
+## Trip data
+The DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.
 
-Calculating this for each scenario by direction gives: 
+In 2024 it was estimated that Annual Average Daily Trips (AADT) [were similar to 2019](https://www.gov.uk/government/statistics/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024). Therefore, 2019 traffic data has been used for this analysis.
+
+On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.
+![](plots/AADT_direction.png)
+
+## Value of time
+Tables A1.3.1-A1.3.5 from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy
+
+Calculating for each scenario by direction gives: 
 ![](plots/CST_WE.png)
 ![](plots/CST_EW.png)
 
@@ -111,8 +125,6 @@ The TAG perceived loss to the market for each Scenario over the course of a year
 ![](plots/scenario_C_cost.gif)
 ![](plots/scenario_D_cost.gif)
 
-There is no reason why the perceived loss to the economy of a driver taking a few seconds longer, should outweigh noise, air pollution or collision costs. People neighbouring the road have to put up with incessant noise.
-
 Evidence that uniform speed limits are less cognitively challenging
 
 20mph is most efficient speed for electric vehicles, saving drivers money.
@@ -124,48 +136,40 @@ It is estimated over 1400 people live within 100 metres of the B3108. 225 of the
 Further details on how this was estimated is given in the appendix.
 
 ## Collision costs
+Between 2010 and 2024 there were 57 collisions resulting in 74 casualties reported to the Police, these are plotted below:
+![](plots/cas_type_sev_map.png)
+In Bradford on Avon it is mostly Pedestrians and along the bypass it is predominantly motorists and Winsley Hill Cyclists.
 
-It is estimated that road traffic collisions cost the UK economy £55 billion in 2024. Of this £14 billion are injury costs.
-
-Between 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.
-
-Applying the methodology from TAG to the collisions along B3108
-
+Applying the methodology from TAG to the collisions along B3108 and summing per link gives an estimate for the value of prevention per year.
 ![](plots/collisions_value.png)
-
-## Trip data
-
-The DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.
-
-In 2024 it was estimated that on average traffic was down slightly on 2019. Therefore, 2019 traffic data has been used for this analysis.
-
-On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.
-
-![](plots/AADT_direction.png)
-
-## Average speeds
-
-# Cycle infrastructure benefits
-
-Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road.
-
-Infrastructure that meets guidelines, i.e. not a shared footpath/cycle path that is a hotbed for
-
+## Cycle infrastructure benefits
+Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road, such as the AI generated image below.
+![](data/ChatGPT Image Jan 12, 2026, 10_40_06 AM.png)
 TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.
 
-Using the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, would be nearly £60,000 per week or £3 million per year. Adding this, along with a high quality footpath, could reduce the road width, also reducing the speed of vehicles down the road.
+Using the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, could be quantified at over £30,000 per year to the 500+ cyclists who currently use the road every week. Adding this, along with a high quality footpath, could reduce the road width, also reduce the speed of vehicles down the road. It would also become an artery for active travel through the area.
 
 One of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.
 
 (map of LSOA of drivers)
 
 # Air pollution
-The image below shows an example of NO[[2]] dropoff calculated with the Defra NO2 drop off tool. NO2 reacts with the atmosphere and drops off relatively quickly from the roadside. It is estimated that increasing the source (vehicles) and receptor (buildings) distance by 2m NO2 would be 14% lower at the receptors (https://www.cibse.org/media/tw0bfknn/ukueq-white-paper-the-urban-emergency-main-page-v01.pdf) 
+The image below shows an example of NO~2~ drop off calculated with the [Defra NO~2~ drop off tool](https://laqm.defra.gov.uk/air-quality/air-quality-assessment/no2-falloff/). NO~2~ reacts with the atmosphere and drops off relatively quickly from the roadside. Even without any changes to the vehicle fleet or number of vehicles using the road, it is estimated that [increasing the source (vehicles) and receptor (buildings) distance by 2m NO~2~ would be 14% lower at the receptors](https://www.cibse.org/media/tw0bfknn/ukueq-white-paper-the-urban-emergency-main-page-v01.pdf) 
 ![](data/no2_dropoff.png)
+
+TAG sheet A3.3 Table A 3.2.2 Gives a damage cost value range based on incremental concentrations. Assuming a roadside NO~2~ concentration between 10ug/m3 and 40ug/m^3 and taking the lower and upper monetary estimates the benefit of reducing roadside concentrations by 14% for the population living next to the road would be between £1,546 and £239,733 just for NO~2~.
 
 # Summary
 
-Adding cycle path Reducing speed limit Noise reduction collisions avoidance
+ - Adding cycle path: £30,000  
+ - Collision Avoidance: £245,205  
+ - Reducing speed limit:
+  - Scenario A: -£1,643  
+  - Scenario B: -£661,576  
+  - Scenario C: -£801,843  
+  - Scenario D: -£4,087,308  
+- Noise reduction:  
+- Air Pollution: £1,546 - £239,733
 
 # Appendix
 
@@ -173,4 +177,6 @@ Adding cycle path Reducing speed limit Noise reduction collisions avoidance
 
 ## Local population calculation
 
-The Office for National Statistics (ONS) compiles regularly updated population data for the 'Local Super Output Areas' (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108. ![](plots/lsoa_pop.png) In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.
+The Office for National Statistics (ONS) compiles regularly updated population data for the 'Local Super Output Areas' (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108.
+![](plots/lsoa_pop.png)
+In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.
