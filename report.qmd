@@ -101,9 +101,9 @@ Calculating this for each scenario by direction gives:
 ![](plots/CST_EW.png)
 
 The TAG perceived loss to the market for each Scenario over the course of a year is:  
- - A: £1,644
- - B: £661,576
- - C: £801,843
+ - A: £1,644  
+ - B: £661,576  
+ - C: £801,843  
  - D: £4,087,308
  
 ![](plots/scenario_A_cost.gif)
@@ -130,6 +130,8 @@ It is estimated that road traffic collisions cost the UK economy £55 billion in
 Between 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.
 
 Applying the methodology from TAG to the collisions along B3108
+
+![](plots/collisions_value.png)
 
 ## Trip data
 
