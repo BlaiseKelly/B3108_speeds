@@ -1,0 +1,106 @@
+---
+title: "B3108"
+author: "Blaise Kelly"
+format: html
+editor: visual
+---
+
+# Introduction
+
+The B3108 goes between Bath
+
+## Typical speeds
+
+The Google Distance Matrix API enables a query between two points for a future date and using the "best guess" returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.
+
+TAG cost guidance Provides costs for
+
+The Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix
+
+The road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.
+
+![](../google_speeds/plots/L01.png) ![](../google_speeds/plots/speed_profile_L01_dayhour.png) L02 is the section from Midford Brook bridge to the base of Winsley Hill. ![](../google_speeds/plots/L02.png) ![](../google_speeds/plots/speed_profile_L02_dayhour.png) L03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive. ![](../google_speeds/plots/L03.png) ![](../google_speeds/plots/speed_profile_L03_dayhour.png) L04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads. ![](../google_speeds/plots/L04.png) ![](../google_speeds/plots/speed_profile_L04_dayhour.png) L05 is the 40 mph section of Winsley Road ![](../google_speeds/plots/L05.png) ![](../google_speeds/plots/speed_profile_L05_dayhour.png) L06 the 30mph section of Winsley Road. ![](../google_speeds/plots/L06.png) ![](../google_speeds/plots/speed_profile_L06_dayhour.png)
+
+Each segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call.
+
+# Scenarios
+
+The current speed limits along the road are shown in the figure below. ![](../google_speeds/plots/B3108_speeds_maxspeed.png)
+
+Given the complex nature of the road, with steep gradients, narrow, winding sections and proximity to residential areas there are numerous proposals. These have been broken down into scenarios
+
+### Scenario A
+
+Reducing the 50mph section to 40mph bringing it into line with adjoining roads
+
+![](../google_speeds/plots/B3108_speeds_scenario_A.png) \### Scenario B Reducing the speed limit along the entire stretch of road to 30mph, bringing it into line with the Eastern most segment running through Bradford on Avon.
+
+![](../google_speeds/plots/B3108_speeds_scenario_B.png) \### Scenario C 30mph along the full stretch but 20mph in the most built up section through Bradford on Avon, bringing it into line with other urban areas in Wiltshire. ![](../google_speeds/plots/B3108_speeds_scenario_C.png) \## Scenario D 20 mph along the full stretch, the most effective at reducing noise and collision risk. ![](../google_speeds/plots/B3108_speeds_scenario_D.png) \### Vision Zero 20mph might seem a bit extreme, but Wiltshire LA have committed to Vision Zero, meaning they are striving for no one to die on their roads. Currently a very long way off this target with xx deaths in 2024. This means bolder steps are maybe needed. Vision Zero relies on the principle that if people stick to the rules it should not be possible to die. The most stringent NCAP crash test cars must pass is a 64kph (40mph) collision with a solid object. Speeds faster than 40mph automatically exceed this threshold. Should vehicles collide head on, a common collision on country roads (look in stats19), the threshold falls to 20mph (a head on collision with each vehicle travelling at 20mph is roughly equivalent to a 40mph collision with a solid object). \# Impact on journey time Using the data from the Google API the impact on journey time along the stretch of road was assessed. This was done by taking the average speed for each hour, the length of each stretch of road and swapping the average speed for the revised speed limit. If the speed limit was lower than the average speed the journey time was recalculated with the speed limit assumed to be the speed.
+
+The results of this for each scenario are shown in the table below for each direction ![](../google_speeds/plots/JT_EW.png) ![](../google_speeds/plots/JT_WE.png) The current situation is not visible on the plot, because it is behind Scenario As line as it is identical (499 seconds Westbound and 490 Eastbound). Scenario B is estimated to have a 30 second increase in both directions, C 45 second increase Westbound and 40 seconds Eastbound and D 197 seconds increase Westbound and 191 Eastbound.
+
+# Economic impact
+
+The DfT uses TAG data to attribute value to decisions such as speed limit changes.
+
+## Values of time
+
+Tables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy
+
+Calculating this for each scenario by direction gives: ![](../google_speeds/plots/CST_WE.png) ![](../google_speeds/plots/CST_EW.png)
+
+The TAG perceived loss to the market for each Scenario over the course of a year is A: £1,644 B: £661,576 C: £801,843 D: £4,087,308
+
+There is no reason why the perceived loss to the economy of a driver taking a few seconds longer, should outweigh noise, air pollution or collision costs. People neighbouring the road have to put up with incessant noise.
+
+Evidence that uniform speed limits are less cognitively challenging
+
+20mph is most efficient speed for electric vehicles, saving drivers money.
+
+## population
+
+It is estimated over 1400 people live within 100 metres of the B3108. 225 of these live within 100 metres of the 50mph section. ![](../google_speeds/plots/lsoa_pop_roadside.png)
+
+Further details on how this was estimated is given in the appendix.
+
+## Collision costs
+
+Annually it is estimated that road traffic collisions cost the UK economy £55 billion.
+
+## Trip data
+
+The DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.
+
+In 2024 it was estimated that on average traffic was down slightly on 2019. Therefore, 2019 traffic data has been used for this analysis.
+
+On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.
+
+![](../google_speeds/plots/AADT_direction.png)
+
+## Average speeds
+
+# Cycle infrastructure benefits
+
+Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road.
+
+Infrastructure that meets guidelines, i.e. not a shared footpath/cycle path that is a hotbed for
+
+TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.
+
+Using the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, would be nearly £60,000 per week or £3 million per year. Adding this, along with a high quality footpath, could reduce the road width, also reducing the speed of vehicles down the road.
+
+One of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.
+
+(map of LSOA of drivers)
+
+# Summary
+
+Adding cycle path Reducing speed limit Noise reduction collisions avoidance
+
+# Appendix
+
+## Journey time
+
+## Local population calculation
+
+The Office for National Statistics (ONS) compiles regularly updated population data for the 'Local Super Output Areas' (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108. ![](../google_speeds/plots/lsoa_pop.png) In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.
