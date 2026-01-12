@@ -2,70 +2,70 @@
   {
     "objectID": "report.html",
     "href": "report.html",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "",
-    "text": "The B3108 goes between Bath\nSome data goes back to 2010. The road has not changed significantly in that time\n\n\nThe Google Distance Matrix API enables a query between two points for a future date and using the “best guess” returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.\nTAG cost guidance provides costs for\nThe Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road  \nL06 the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
+    "text": "The B3108 runs north of Winsley conurbation connecting Warminster Road in the West, with Bath Road in Bradford on Avon.\nThere have been on-going discussions regarding the speed limit on this road. This document aims to expand on some of the points mentioned in Briefing Note: “B3108 Winsley Bypass” published in November 2022.\n\nThat speeds are already on average in the same ballpark as proposed speed limits\n\nCost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips\nThat a significant number of people live along the road, with numerous properties fronting onto the road.\n\n\n\nIn order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road   L06 is the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
   },
   {
     "objectID": "report.html#typical-speeds",
     "href": "report.html#typical-speeds",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "",
-    "text": "The Google Distance Matrix API enables a query between two points for a future date and using the “best guess” returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.\nTAG cost guidance provides costs for\nThe Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road  \nL06 the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
+    "text": "In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road   L06 is the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
   },
   {
     "objectID": "report.html#scenario-d",
     "href": "report.html#scenario-d",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Scenario D",
     "text": "Scenario D\n20 mph along the full stretch, the most effective at reducing noise and collision risk. \n\nVision Zero\nA 20 mph limit may appear extreme at first glance; however, Wiltshire Council has formally committed to the principles of Vision Zero, which aims to eliminate all deaths and serious injuries on the road network. At present, the county remains a considerable distance from this ambition, with 189 people Killed or Seriously injured on the regions roads in 2024. This suggests that more decisive and ambitious measures may be required.\nVision Zero is founded on the principle that if road users comply with the rules, the transport system should be designed so that fatal outcomes are not possible. Current vehicle safety standards (Euro NCAP crash tests) require vehicles to withstand a 64 kph (40 mph) impact with a rigid barrier. Any collision occurring at higher speeds exceeds this tested safety threshold.\nOn rural roads, head-on collisions are a common and particularly severe crash type (as evidenced in STATS19 data). In such cases, the equivalent impact speed is the combined speed of both vehicles. Two vehicles colliding head-on at 20 mph each produces an impact broadly equivalent to a single vehicle striking a solid object at 40 mph. Speeds above this therefore significantly increase the likelihood of fatal injury, even in modern vehicles."
   },
   {
+    "objectID": "report.html#trip-data",
+    "href": "report.html#trip-data",
+    "title": "B3108 Speed Limit Analysis",
+    "section": "Trip data",
+    "text": "Trip data\nThe DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.\nIn 2024 it was estimated that Annual Average Daily Trips (AADT) were similar to 2019. Therefore, 2019 traffic data has been used for this analysis.\nOn average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction."
+  },
+  {
     "objectID": "report.html#values-of-time",
     "href": "report.html#values-of-time",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Values of time",
     "text": "Values of time\nTables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy\nCalculating this for each scenario by direction gives:  \nThe TAG perceived loss to the market for each Scenario over the course of a year is:\n- A: £1,644\n- B: £661,576\n- C: £801,843\n- D: £4,087,308\n   \nThere is no reason why the perceived loss to the economy of a driver taking a few seconds longer, should outweigh noise, air pollution or collision costs. People neighbouring the road have to put up with incessant noise.\nEvidence that uniform speed limits are less cognitively challenging\n20mph is most efficient speed for electric vehicles, saving drivers money."
   },
   {
     "objectID": "report.html#population",
     "href": "report.html#population",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "population",
     "text": "population\nIt is estimated over 1400 people live within 100 metres of the B3108. 225 of these live within 100 metres of the 50mph section. \nFurther details on how this was estimated is given in the appendix."
   },
   {
     "objectID": "report.html#collision-costs",
     "href": "report.html#collision-costs",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Collision costs",
     "text": "Collision costs\nIt is estimated that road traffic collisions cost the UK economy £55 billion in 2024. Of this £14 billion are injury costs.\nBetween 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.\nApplying the methodology from TAG to the collisions along B3108"
   },
   {
-    "objectID": "report.html#trip-data",
-    "href": "report.html#trip-data",
-    "title": "B3108",
-    "section": "Trip data",
-    "text": "Trip data\nThe DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.\nIn 2024 it was estimated that Annual Average Daily Trips (AADT) [were similar to 2019] (https://www.gov.uk/government/statistics/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024/provisional-road-traffic-estimates-great-britain-october-2023-to-september-2024). Therefore, 2019 traffic data has been used for this analysis.\nOn average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction."
-  },
-  {
     "objectID": "report.html#average-speeds",
     "href": "report.html#average-speeds",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Average speeds",
     "text": "Average speeds"
   },
   {
     "objectID": "report.html#journey-time",
     "href": "report.html#journey-time",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Journey time",
     "text": "Journey time"
   },
   {
     "objectID": "report.html#local-population-calculation",
     "href": "report.html#local-population-calculation",
-    "title": "B3108",
+    "title": "B3108 Speed Limit Analysis",
     "section": "Local population calculation",
     "text": "Local population calculation\nThe Office for National Statistics (ONS) compiles regularly updated population data for the ‘Local Super Output Areas’ (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108.  In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon."
   },
