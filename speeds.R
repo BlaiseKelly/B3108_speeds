@@ -24,7 +24,7 @@ api_key <- NULL
 
 library(openxlsx)
 
-load("../ data/run_03012026.RData")
+load("data/run_03012026.RData")
 
 # tag data book
 # https://www.gov.uk/government/publications/tag-data-book
@@ -774,63 +774,6 @@ for (L in unique(link_speed_dat$ID)){
 
 
 #full_road_speeds = get_start_end_speeds(start_point = full_rd_start, end_point = full_rd_end, api_key = api_key, both_directions = TRUE)
-
-
-
-
-for (l in )
-
-
-# plot mean for all links
-p1 <- timeVariation(link_speed_dat, pollutant = "speed", group = "bearing", ylab = "speed (kph)", main = paste0("speed profile of B3108 Lower Stoke road to junction with Warminster Road"))
-
-
-saveRDS(link_speed_dat, "data/lower_stoke.RDS")
-
-speed_dat = readRDS("data/B3108.RDS")
-
-
-
-
-
-
-
-#plot for each link
-dir.create("plots")
-for (eL in unique(speed_dat$ID)){
-  df2 <- speed_dat |>
-    filter(ID == eL)
-  d = unique(df2$angle)
-  for ()
-  tryCatch({
-
-      select(date = date_new, speed)
-    p2 <- timeVariation(df2, pollutant = "speed", main = paste0(eL, " Weekly Speeds (kph)"))
-    filename <- paste0("plots/", eL, "_", Sys.Date(), ".png")
-    png(filename, width=2000, height=500, units="px", res=160)
-    print(p2$plot$day.hour)
-    dev.off()
-  }, error=function(e){cat("ERROR :",conditionMessage(e), "\n")})
-}
-
-# plot mean for all links
-p2 <- timeVariation(speed_dat, pollutant = "speed", main = paste0("speed profile of area central Ulaanbaatar, Mongolia (kph)"))
-
-# save plot
-filename <- paste0("plots/avg_profile.png")
-png(filename, width=2000, height=1500, units="px", res=180)
-print(p2)
-dev.off()
-
-
-# join spatial data to speeds and adjust date format for tmap
-speed_plot <- speed_dat |>
-  transmute(date = as.factor(date_new),day, ID, speed) |>
-  left_join(osm_drive, by = "ID") |>
-  st_set_geometry("geometry")
-
-
-
 
 
 

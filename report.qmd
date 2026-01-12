@@ -9,23 +9,44 @@ editor: visual
 
 The B3108 goes between Bath
 
+Some data goes back to 2010. The road has not changed significantly in that time 
+
 ## Typical speeds
 
 The Google Distance Matrix API enables a query between two points for a future date and using the "best guess" returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.
 
-TAG cost guidance Provides costs for
+TAG cost guidance provides costs for
 
 The Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix
 
 The road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.
 
-![](../google_speeds/plots/L01.png) ![](../google_speeds/plots/speed_profile_L01_dayhour.png) L02 is the section from Midford Brook bridge to the base of Winsley Hill. ![](../google_speeds/plots/L02.png) ![](../google_speeds/plots/speed_profile_L02_dayhour.png) L03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive. ![](../google_speeds/plots/L03.png) ![](../google_speeds/plots/speed_profile_L03_dayhour.png) L04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads. ![](../google_speeds/plots/L04.png) ![](../google_speeds/plots/speed_profile_L04_dayhour.png) L05 is the 40 mph section of Winsley Road ![](../google_speeds/plots/L05.png) ![](../google_speeds/plots/speed_profile_L05_dayhour.png) L06 the 30mph section of Winsley Road. ![](../google_speeds/plots/L06.png) ![](../google_speeds/plots/speed_profile_L06_dayhour.png)
+![](plots/L01.png)
+![](plots/speed_profile_L01_dayhour.png) 
+
+L02 is the section from Midford Brook bridge to the base of Winsley Hill.
+![](plots/L02.png) 
+![](plots/speed_profile_L02_dayhour.png) 
+
+L03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive. 
+![](plots/L03.png) ![](plots/speed_profile_L03_dayhour.png) 
+
+L04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads. 
+![](plots/L04.png) 
+![](plots/speed_profile_L04_dayhour.png) 
+L05 is the 40 mph section of Winsley Road 
+![](plots/L05.png) 
+![](plots/speed_profile_L05_dayhour.png) 
+
+L06 the 30mph section of Winsley Road. 
+![](plots/L06.png) 
+![](plots/speed_profile_L06_dayhour.png)
 
 Each segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call.
 
 # Scenarios
 
-The current speed limits along the road are shown in the figure below. ![](../google_speeds/plots/B3108_speeds_maxspeed.png)
+The current speed limits along the road are shown in the figure below. ![](plots/B3108_speeds_maxspeed.png)
 
 Given the complex nature of the road, with steep gradients, narrow, winding sections and proximity to residential areas there are numerous proposals. These have been broken down into scenarios
 
@@ -33,11 +54,39 @@ Given the complex nature of the road, with steep gradients, narrow, winding sect
 
 Reducing the 50mph section to 40mph bringing it into line with adjoining roads
 
-![](../google_speeds/plots/B3108_speeds_scenario_A.png) \### Scenario B Reducing the speed limit along the entire stretch of road to 30mph, bringing it into line with the Eastern most segment running through Bradford on Avon.
+![](plots/B3108_speeds_scenario_A.png)
 
-![](../google_speeds/plots/B3108_speeds_scenario_B.png) \### Scenario C 30mph along the full stretch but 20mph in the most built up section through Bradford on Avon, bringing it into line with other urban areas in Wiltshire. ![](../google_speeds/plots/B3108_speeds_scenario_C.png) \## Scenario D 20 mph along the full stretch, the most effective at reducing noise and collision risk. ![](../google_speeds/plots/B3108_speeds_scenario_D.png) \### Vision Zero 20mph might seem a bit extreme, but Wiltshire LA have committed to Vision Zero, meaning they are striving for no one to die on their roads. Currently a very long way off this target with xx deaths in 2024. This means bolder steps are maybe needed. Vision Zero relies on the principle that if people stick to the rules it should not be possible to die. The most stringent NCAP crash test cars must pass is a 64kph (40mph) collision with a solid object. Speeds faster than 40mph automatically exceed this threshold. Should vehicles collide head on, a common collision on country roads (look in stats19), the threshold falls to 20mph (a head on collision with each vehicle travelling at 20mph is roughly equivalent to a 40mph collision with a solid object). \# Impact on journey time Using the data from the Google API the impact on journey time along the stretch of road was assessed. This was done by taking the average speed for each hour, the length of each stretch of road and swapping the average speed for the revised speed limit. If the speed limit was lower than the average speed the journey time was recalculated with the speed limit assumed to be the speed.
+### Scenario B
+Reducing the speed limit along the entire stretch of road to 30mph, bringing it into line with the Eastern most segment running through Bradford on Avon.
 
-The results of this for each scenario are shown in the table below for each direction ![](../google_speeds/plots/JT_EW.png) ![](../google_speeds/plots/JT_WE.png) The current situation is not visible on the plot, because it is behind Scenario As line as it is identical (499 seconds Westbound and 490 Eastbound). Scenario B is estimated to have a 30 second increase in both directions, C 45 second increase Westbound and 40 seconds Eastbound and D 197 seconds increase Westbound and 191 Eastbound.
+![](plots/B3108_speeds_scenario_B.png)
+
+### Scenario C
+30mph along the full stretch but 20mph in the most built up section through Bradford on Avon, bringing it into line with other urban areas in Wiltshire. ![](plots/B3108_speeds_scenario_C.png)
+
+## Scenario D 
+20 mph along the full stretch, the most effective at reducing noise and collision risk. ![](plots/B3108_speeds_scenario_D.png)
+
+### Vision Zero
+A 20 mph limit may appear extreme at first glance; however, Wiltshire Council has formally committed to the principles of Vision Zero, which aims to eliminate all deaths and serious injuries on the road network. At present, the county remains a considerable distance from this ambition, with 189 people Killed or Seriously injured on the regions roads in 2024. This suggests that more decisive and ambitious measures may be required.
+
+Vision Zero is founded on the principle that if road users comply with the rules, the transport system should be designed so that fatal outcomes are not possible. Current vehicle safety standards (Euro NCAP crash tests) require vehicles to withstand a 64 kph (40 mph) impact with a rigid barrier. Any collision occurring at higher speeds exceeds this tested safety threshold.
+
+On rural roads, head-on collisions are a common and particularly severe crash type (as evidenced in STATS19 data). In such cases, the equivalent impact speed is the combined speed of both vehicles. Two vehicles colliding head-on at 20 mph each produces an impact broadly equivalent to a single vehicle striking a solid object at 40 mph. Speeds above this therefore significantly increase the likelihood of fatal injury, even in modern vehicles.
+
+# Impact on journey time
+Using the data from the Google API the impact on journey time along the stretch of road was assessed. This was done by taking the average speed for each hour, the length of each stretch of road and swapping the average speed for the revised speed limit. If the speed limit was lower than the average speed the journey time was recalculated with the speed limit assumed to be the speed.
+
+The results of this for each scenario are shown in the table below for each direction 
+![](plots/JT_EW.png)
+![](plots/JT_WE.png) 
+
+The current situation is not visible on the plot, because it is behind Scenario As line as it is identical (499 seconds Westbound and 490 Eastbound). Scenario B is estimated to have a 30 second increase in both directions, C 45 second increase Westbound and 40 seconds Eastbound and D 197 seconds increase Westbound and 191 Eastbound.
+
+![](plots/scenario_A_time.gif)
+![](plots/scenario_B_time.gif)
+![](plots/scenario_C_time.gif)
+![](plots/scenario_D_time.gif)
 
 # Economic impact
 
@@ -47,9 +96,20 @@ The DfT uses TAG data to attribute value to decisions such as speed limit change
 
 Tables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy
 
-Calculating this for each scenario by direction gives: ![](../google_speeds/plots/CST_WE.png) ![](../google_speeds/plots/CST_EW.png)
+Calculating this for each scenario by direction gives: 
+![](plots/CST_WE.png)
+![](plots/CST_EW.png)
 
-The TAG perceived loss to the market for each Scenario over the course of a year is A: £1,644 B: £661,576 C: £801,843 D: £4,087,308
+The TAG perceived loss to the market for each Scenario over the course of a year is:  
+ - A: £1,644
+ - B: £661,576
+ - C: £801,843
+ - D: £4,087,308
+ 
+![](plots/scenario_A_cost.gif)
+![](plots/scenario_B_cost.gif)
+![](plots/scenario_C_cost.gif)
+![](plots/scenario_D_cost.gif)
 
 There is no reason why the perceived loss to the economy of a driver taking a few seconds longer, should outweigh noise, air pollution or collision costs. People neighbouring the road have to put up with incessant noise.
 
@@ -59,13 +119,17 @@ Evidence that uniform speed limits are less cognitively challenging
 
 ## population
 
-It is estimated over 1400 people live within 100 metres of the B3108. 225 of these live within 100 metres of the 50mph section. ![](../google_speeds/plots/lsoa_pop_roadside.png)
+It is estimated over 1400 people live within 100 metres of the B3108. 225 of these live within 100 metres of the 50mph section. ![](plots/lsoa_pop_roadside.png)
 
 Further details on how this was estimated is given in the appendix.
 
 ## Collision costs
 
-Annually it is estimated that road traffic collisions cost the UK economy £55 billion.
+It is estimated that road traffic collisions cost the UK economy £55 billion in 2024. Of this £14 billion are injury costs.
+
+Between 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.
+
+Applying the methodology from TAG to the collisions along B3108
 
 ## Trip data
 
@@ -75,7 +139,7 @@ In 2024 it was estimated that on average traffic was down slightly on 2019. Ther
 
 On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.
 
-![](../google_speeds/plots/AADT_direction.png)
+![](plots/AADT_direction.png)
 
 ## Average speeds
 
@@ -93,6 +157,10 @@ One of the takeaways from the analysis of STATS19 data on drivers involved in co
 
 (map of LSOA of drivers)
 
+# Air pollution
+The image below shows an example of NO[[2]] dropoff calculated with the Defra NO2 drop off tool. NO2 reacts with the atmosphere and drops off relatively quickly from the roadside. It is estimated that increasing the source (vehicles) and receptor (buildings) distance by 2m NO2 would be 14% lower at the receptors (https://www.cibse.org/media/tw0bfknn/ukueq-white-paper-the-urban-emergency-main-page-v01.pdf) 
+![](data/no2_dropoff.png)
+
 # Summary
 
 Adding cycle path Reducing speed limit Noise reduction collisions avoidance
@@ -103,4 +171,4 @@ Adding cycle path Reducing speed limit Noise reduction collisions avoidance
 
 ## Local population calculation
 
-The Office for National Statistics (ONS) compiles regularly updated population data for the 'Local Super Output Areas' (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108. ![](../google_speeds/plots/lsoa_pop.png) In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.
+The Office for National Statistics (ONS) compiles regularly updated population data for the 'Local Super Output Areas' (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108. ![](plots/lsoa_pop.png) In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.

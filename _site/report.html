@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Blaise Kelly">
+
+<title>B3108 – B3108 speed anlaysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-e31584831b205ffbb2d98406f31c2a5b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">B3108 speed anlaysis</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./report.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#typical-speeds" id="toc-typical-speeds" class="nav-link" data-scroll-target="#typical-speeds">Typical speeds</a></li>
+  </ul></li>
+  <li><a href="#scenarios" id="toc-scenarios" class="nav-link" data-scroll-target="#scenarios">Scenarios</a>
+  <ul class="collapse">
+  <li><a href="#scenario-a" id="toc-scenario-a" class="nav-link" data-scroll-target="#scenario-a">Scenario A</a></li>
+  <li><a href="#scenario-b" id="toc-scenario-b" class="nav-link" data-scroll-target="#scenario-b">Scenario B</a></li>
+  <li><a href="#scenario-c" id="toc-scenario-c" class="nav-link" data-scroll-target="#scenario-c">Scenario C</a></li>
+  <li><a href="#scenario-d" id="toc-scenario-d" class="nav-link" data-scroll-target="#scenario-d">Scenario D</a>
+  <ul class="collapse">
+  <li><a href="#vision-zero" id="toc-vision-zero" class="nav-link" data-scroll-target="#vision-zero">Vision Zero</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#impact-on-journey-time" id="toc-impact-on-journey-time" class="nav-link" data-scroll-target="#impact-on-journey-time">Impact on journey time</a></li>
+  <li><a href="#economic-impact" id="toc-economic-impact" class="nav-link" data-scroll-target="#economic-impact">Economic impact</a>
+  <ul class="collapse">
+  <li><a href="#values-of-time" id="toc-values-of-time" class="nav-link" data-scroll-target="#values-of-time">Values of time</a></li>
+  <li><a href="#population" id="toc-population" class="nav-link" data-scroll-target="#population">population</a></li>
+  <li><a href="#collision-costs" id="toc-collision-costs" class="nav-link" data-scroll-target="#collision-costs">Collision costs</a></li>
+  <li><a href="#trip-data" id="toc-trip-data" class="nav-link" data-scroll-target="#trip-data">Trip data</a></li>
+  <li><a href="#average-speeds" id="toc-average-speeds" class="nav-link" data-scroll-target="#average-speeds">Average speeds</a></li>
+  </ul></li>
+  <li><a href="#cycle-infrastructure-benefits" id="toc-cycle-infrastructure-benefits" class="nav-link" data-scroll-target="#cycle-infrastructure-benefits">Cycle infrastructure benefits</a></li>
+  <li><a href="#air-pollution" id="toc-air-pollution" class="nav-link" data-scroll-target="#air-pollution">Air pollution</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#appendix" id="toc-appendix" class="nav-link" data-scroll-target="#appendix">Appendix</a>
+  <ul class="collapse">
+  <li><a href="#journey-time" id="toc-journey-time" class="nav-link" data-scroll-target="#journey-time">Journey time</a></li>
+  <li><a href="#local-population-calculation" id="toc-local-population-calculation" class="nav-link" data-scroll-target="#local-population-calculation">Local population calculation</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">B3108</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Blaise Kelly </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>The B3108 goes between Bath</p>
+<p>Some data goes back to 2010. The road has not changed significantly in that time</p>
+<section id="typical-speeds" class="level2">
+<h2 class="anchored" data-anchor-id="typical-speeds">Typical speeds</h2>
+<p>The Google Distance Matrix API enables a query between two points for a future date and using the “best guess” returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed. Model option “best guess” uses this historic data to estimate how long it might take based on past trips undertaken by people with Android phones.</p>
+<p>TAG cost guidance provides costs for</p>
+<p>The Google Distance Matrix API enables users to query the estimated time between two points for a specific journey start time. The best_guess traffic model in the Google Distance Matrix API is the default method for estimating travel times when accounting for traffic conditions. It returns the best estimate of travel time based on both historical traffic conditions and live traffic data, with live traffic becoming more important the closer the departure time is to the current moment. Google This parameter can only be used for driving directions and requires specifying a departure time that is either current or in the future. Unlike the alternative traffic models (optimistic and pessimistic), which provide upper and lower bounds on travel time, best_guess aims to provide the most realistic single prediction by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix</p>
+<p>The road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the Google API shown in more detail in the Appendix. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. With each section is the speed profile split by direction.</p>
+<p><img src="plots/L01.png" class="img-fluid"> <img src="plots/speed_profile_L01_dayhour.png" class="img-fluid"></p>
+<p>L02 is the section from Midford Brook bridge to the base of Winsley Hill. <img src="plots/L02.png" class="img-fluid"> <img src="plots/speed_profile_L02_dayhour.png" class="img-fluid"></p>
+<p>L03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive. <img src="plots/L03.png" class="img-fluid"> <img src="plots/speed_profile_L03_dayhour.png" class="img-fluid"></p>
+<p>L04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads. <img src="plots/L04.png" class="img-fluid"> <img src="plots/speed_profile_L04_dayhour.png" class="img-fluid"> L05 is the 40 mph section of Winsley Road <img src="plots/L05.png" class="img-fluid"> <img src="plots/speed_profile_L05_dayhour.png" class="img-fluid"></p>
+<p>L06 the 30mph section of Winsley Road. <img src="plots/L06.png" class="img-fluid"> <img src="plots/speed_profile_L06_dayhour.png" class="img-fluid"></p>
+<p>Each segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call.</p>
+</section>
+</section>
+<section id="scenarios" class="level1">
+<h1>Scenarios</h1>
+<p>The current speed limits along the road are shown in the figure below. <img src="plots/B3108_speeds_maxspeed.png" class="img-fluid"></p>
+<p>Given the complex nature of the road, with steep gradients, narrow, winding sections and proximity to residential areas there are numerous proposals. These have been broken down into scenarios</p>
+<section id="scenario-a" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-a">Scenario A</h3>
+<p>Reducing the 50mph section to 40mph bringing it into line with adjoining roads</p>
+<p><img src="plots/B3108_speeds_scenario_A.png" class="img-fluid"></p>
+</section>
+<section id="scenario-b" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-b">Scenario B</h3>
+<p>Reducing the speed limit along the entire stretch of road to 30mph, bringing it into line with the Eastern most segment running through Bradford on Avon.</p>
+<p><img src="plots/B3108_speeds_scenario_B.png" class="img-fluid"></p>
+</section>
+<section id="scenario-c" class="level3">
+<h3 class="anchored" data-anchor-id="scenario-c">Scenario C</h3>
+<p>30mph along the full stretch but 20mph in the most built up section through Bradford on Avon, bringing it into line with other urban areas in Wiltshire. <img src="plots/B3108_speeds_scenario_C.png" class="img-fluid"></p>
+</section>
+<section id="scenario-d" class="level2">
+<h2 class="anchored" data-anchor-id="scenario-d">Scenario D</h2>
+<p>20 mph along the full stretch, the most effective at reducing noise and collision risk. <img src="plots/B3108_speeds_scenario_D.png" class="img-fluid"></p>
+<section id="vision-zero" class="level3">
+<h3 class="anchored" data-anchor-id="vision-zero">Vision Zero</h3>
+<p>A 20 mph limit may appear extreme at first glance; however, Wiltshire Council has formally committed to the principles of Vision Zero, which aims to eliminate all deaths and serious injuries on the road network. At present, the county remains a considerable distance from this ambition, with 189 people Killed or Seriously injured on the regions roads in 2024. This suggests that more decisive and ambitious measures may be required.</p>
+<p>Vision Zero is founded on the principle that if road users comply with the rules, the transport system should be designed so that fatal outcomes are not possible. Current vehicle safety standards (Euro NCAP crash tests) require vehicles to withstand a 64 kph (40 mph) impact with a rigid barrier. Any collision occurring at higher speeds exceeds this tested safety threshold.</p>
+<p>On rural roads, head-on collisions are a common and particularly severe crash type (as evidenced in STATS19 data). In such cases, the equivalent impact speed is the combined speed of both vehicles. Two vehicles colliding head-on at 20 mph each produces an impact broadly equivalent to a single vehicle striking a solid object at 40 mph. Speeds above this therefore significantly increase the likelihood of fatal injury, even in modern vehicles.</p>
+</section>
+</section>
+</section>
+<section id="impact-on-journey-time" class="level1">
+<h1>Impact on journey time</h1>
+<p>Using the data from the Google API the impact on journey time along the stretch of road was assessed. This was done by taking the average speed for each hour, the length of each stretch of road and swapping the average speed for the revised speed limit. If the speed limit was lower than the average speed the journey time was recalculated with the speed limit assumed to be the speed.</p>
+<p>The results of this for each scenario are shown in the table below for each direction <img src="plots/JT_EW.png" class="img-fluid"> <img src="plots/JT_WE.png" class="img-fluid"></p>
+<p>The current situation is not visible on the plot, because it is behind Scenario As line as it is identical (499 seconds Westbound and 490 Eastbound). Scenario B is estimated to have a 30 second increase in both directions, C 45 second increase Westbound and 40 seconds Eastbound and D 197 seconds increase Westbound and 191 Eastbound.</p>
+<p><img src="plots/scenario_A_time.gif" class="img-fluid"> <img src="plots/scenario_B_time.gif" class="img-fluid"> <img src="plots/scenario_C_time.gif" class="img-fluid"> <img src="plots/scenario_D_time.gif" class="img-fluid"></p>
+</section>
+<section id="economic-impact" class="level1">
+<h1>Economic impact</h1>
+<p>The DfT uses TAG data to attribute value to decisions such as speed limit changes.</p>
+<section id="values-of-time" class="level2">
+<h2 class="anchored" data-anchor-id="values-of-time">Values of time</h2>
+<p>Tables xxx from TAG have been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy</p>
+<p>Calculating this for each scenario by direction gives: <img src="plots/CST_WE.png" class="img-fluid"> <img src="plots/CST_EW.png" class="img-fluid"></p>
+<p>The TAG perceived loss to the market for each Scenario over the course of a year is:<br>
+- A: £1,644 - B: £661,576 - C: £801,843 - D: £4,087,308</p>
+<p><img src="plots/scenario_A_cost.gif" class="img-fluid"> <img src="plots/scenario_B_cost.gif" class="img-fluid"> <img src="plots/scenario_C_cost.gif" class="img-fluid"> <img src="plots/scenario_D_cost.gif" class="img-fluid"></p>
+<p>There is no reason why the perceived loss to the economy of a driver taking a few seconds longer, should outweigh noise, air pollution or collision costs. People neighbouring the road have to put up with incessant noise.</p>
+<p>Evidence that uniform speed limits are less cognitively challenging</p>
+<p>20mph is most efficient speed for electric vehicles, saving drivers money.</p>
+</section>
+<section id="population" class="level2">
+<h2 class="anchored" data-anchor-id="population">population</h2>
+<p>It is estimated over 1400 people live within 100 metres of the B3108. 225 of these live within 100 metres of the 50mph section. <img src="plots/lsoa_pop_roadside.png" class="img-fluid"></p>
+<p>Further details on how this was estimated is given in the appendix.</p>
+</section>
+<section id="collision-costs" class="level2">
+<h2 class="anchored" data-anchor-id="collision-costs">Collision costs</h2>
+<p>It is estimated that road traffic collisions cost the UK economy £55 billion in 2024. Of this £14 billion are injury costs.</p>
+<p>Between 2010 and 2024 there were 57 collisions resulting in 74 casualties, reported to the Police.</p>
+<p>Applying the methodology from TAG to the collisions along B3108</p>
+</section>
+<section id="trip-data" class="level2">
+<h2 class="anchored" data-anchor-id="trip-data">Trip data</h2>
+<p>The DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.</p>
+<p>In 2024 it was estimated that on average traffic was down slightly on 2019. Therefore, 2019 traffic data has been used for this analysis.</p>
+<p>On average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction.</p>
+<p><img src="plots/AADT_direction.png" class="img-fluid"></p>
+</section>
+<section id="average-speeds" class="level2">
+<h2 class="anchored" data-anchor-id="average-speeds">Average speeds</h2>
+</section>
+</section>
+<section id="cycle-infrastructure-benefits" class="level1">
+<h1>Cycle infrastructure benefits</h1>
+<p>Narrowing the road could be achieved by adding high quality cycle and walking infrastructure to the road.</p>
+<p>Infrastructure that meets guidelines, i.e.&nbsp;not a shared footpath/cycle path that is a hotbed for</p>
+<p>TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.</p>
+<p>Using the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, would be nearly £60,000 per week or £3 million per year. Adding this, along with a high quality footpath, could reduce the road width, also reducing the speed of vehicles down the road.</p>
+<p>One of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.</p>
+<p>(map of LSOA of drivers)</p>
+</section>
+<section id="air-pollution" class="level1">
+<h1>Air pollution</h1>
+<p>The image below shows an example of NO[[2]] dropoff calculated with the Defra NO2 drop off tool. NO2 reacts with the atmosphere and drops off relatively quickly from the roadside. It is estimated that increasing the source (vehicles) and receptor (buildings) distance by 2m NO2 would be 14% lower at the receptors (https://www.cibse.org/media/tw0bfknn/ukueq-white-paper-the-urban-emergency-main-page-v01.pdf) <img src="data/no2_dropoff.png" class="img-fluid"></p>
+</section>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>Adding cycle path Reducing speed limit Noise reduction collisions avoidance</p>
+</section>
+<section id="appendix" class="level1">
+<h1>Appendix</h1>
+<section id="journey-time" class="level2">
+<h2 class="anchored" data-anchor-id="journey-time">Journey time</h2>
+</section>
+<section id="local-population-calculation" class="level2">
+<h2 class="anchored" data-anchor-id="local-population-calculation">Local population calculation</h2>
+<p>The Office for National Statistics (ONS) compiles regularly updated population data for the ‘Local Super Output Areas’ (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108. <img src="plots/lsoa_pop.png" class="img-fluid"> In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

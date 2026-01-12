@@ -9,6 +9,8 @@ source("../stats19_stats/R/get.R")
 source("../stats19_stats/R/plots.R")
 source("../stats19_stats/R/summary.R")
 source("../stats19_stats/R/tables.R")
+source("../stats19_stats/R/tables.")
+devtools::load_all("../stats19_match/")
 
 crashes = get_stats19(year = 2004,type = "collision") |> 
   filter(collision_year >= 2010) |>
@@ -16,7 +18,7 @@ crashes = get_stats19(year = 2004,type = "collision") |>
   st_transform(4326)
 
 casualties = get_stats19(year = 2004, type = "casualty") |> 
-  filter(collision_index == crashes$collision_index)
+  filter(collision_index %in% crashes$collision_index)
 
 # create a geo referenced point
 area <- st_point(c(-2.285,51.35)) |>
@@ -145,8 +147,18 @@ mapview(Wiltshire)
 
 crashes_wiltshire = crashes[Wiltshire,] 
 
-Wiltshire_fatal = crashes_wiltshire |> 
-  filter(collision_severity == "Fatal") |> 
+crashes_wiltshire = match_tag(crashes_wiltshire)
+
+casualties_wiltshire = casualties |> 
+  filter(collision_index %in% crashes_wiltshire$collision_index) |> 
+  mutate(fatal_count = if_else(casualty_severity == "Fatal", 1, 0))
+
+Wiltshire_fatal = casualties_wiltshire |> 
+  filter(casualty_severity %in% c("Fatal", "Serious")) |> 
   group_by(collision_year) |> 
-  summarise(fatal = sum(as.numeric(number_of_casualties)))
+  summarise(KSI = n())
+
+index_df = casualties_index(casualties = casualties_wilshire, base_year = 2010, end_year = 2024)
+
+p1 = index_plot(indexes = index_df,city = "Wiltshire",plot_dir = "plots/", base_year = 2010, end_year = 2024)
 
