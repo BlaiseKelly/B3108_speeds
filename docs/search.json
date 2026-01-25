@@ -53,7 +53,14 @@
     "href": "report.html#journey-time",
     "title": "B3108 Speed Limit Analysis",
     "section": "Journey time",
-    "text": "Journey time"
+    "text": "Journey time\nThe table below lists the estimated journey time for each road link based on the Google API request"
+  },
+  {
+    "objectID": "report.html#value-of-time-1",
+    "href": "report.html#value-of-time-1",
+    "title": "B3108 Speed Limit Analysis",
+    "section": "Value of time",
+    "text": "Value of time\nThe tables A1.3.4 and A1.3.5 from TAG data book were imported and reshaped to give a timeseries for each hour of the day.\nTable A1.3.4\nThere are two methods for calculating time, per vehicle or per person. TAG table A1.3.3 gives estimates for occupancies of vehicles for time ranges during the week and weekend averages. However, this can become complicated when deciding trip reason for car occupants. Table A1.3.4 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nTable A1.3.5 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nThese tables are joined to the DfT AADT data to give one table with flows split by trip purpose and assigned a cost."
   },
   {
     "objectID": "report.html#local-population-calculation",
