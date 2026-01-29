@@ -151,7 +151,13 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#vehicle-noise" id="toc-vehicle-noise" class="nav-link active" data-scroll-target="#vehicle-noise">Vehicle Noise</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#vehicle-noise" id="toc-vehicle-noise" class="nav-link" data-scroll-target="#vehicle-noise">Vehicle Noise</a>
+  <ul class="collapse">
+  <li><a href="#l03-winsley-hill-daytime" id="toc-l03-winsley-hill-daytime" class="nav-link" data-scroll-target="#l03-winsley-hill-daytime">L03: Winsley Hill daytime</a></li>
+  <li><a href="#l04-winsley-by-pass-day-time" id="toc-l04-winsley-by-pass-day-time" class="nav-link" data-scroll-target="#l04-winsley-by-pass-day-time">L04: Winsley by-pass day time</a></li>
+  </ul></li>
+  <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   </ul>
 </nav>
     </div>
@@ -189,19 +195,29 @@ window.Quarto = {
 </header>
 
 
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
 <p>The noise level at each building for each hour of a typical week has been calculated using the <a href="https://storage.googleapis.com/dft-statistics/road-traffic/downloads/aadfbydirection/count_point_id/dft_aadfbydirection_count_point_id_947637.csv%22">DfT AADT Count point 947637</a> along Winsley Hill, extrapolated with the typical diurnal profile using 946637 <a href="https://assets.publishing.service.gov.uk/media/684965113a2aa5ba84d1dee2/tra0307-traffic-distribution-by-time-of-day.ods">TRA0307</a> which gives the profile below:</p>
 <p><img src="plots/AADT_noise.png" class="img-fluid"></p>
 <p>These flows were applied to the full length of the road.</p>
 <p>The noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.</p>
-<p>This calculation does not include:<br>
-- Ground absorption<br>
-- Screening / barriers<br>
-- Reflections<br>
-- Façade corrections<br>
-- Road gradient<br>
-- Road surface correction</p>
-<section id="vehicle-noise" class="level2">
-<h2 class="anchored" data-anchor-id="vehicle-noise">Vehicle Noise</h2>
+<p>This calculation does not include:</p>
+<ul>
+<li>Ground absorption<br>
+</li>
+<li>Screening / barriers<br>
+</li>
+<li>Reflections<br>
+</li>
+<li>Façade corrections<br>
+</li>
+<li>Road gradient<br>
+</li>
+<li>Road surface correction</li>
+</ul>
+</section>
+<section id="vehicle-noise" class="level1">
+<h1>Vehicle Noise</h1>
 <p><span class="math inline">\(A_i\)</span> The vehicle-type–specific noise emission constant, referenced to a 10 m distance, taken from TAG / CRTN-based road traffic noise tables: Car = 27.7 LGV = 34.7 HGV = 39.7 <span class="math display">\[
 E_{i,10} = N_i \cdot 10^{\frac{A_i + 10 \log_{10}(v_i)}{10}}
 \]</span></p>
@@ -225,7 +241,20 @@ L_{\mathrm{Aeq},P}
 10^{L_{\mathrm{Aeq},1h,i}/10}
 \right)
 \]</span></p>
-<p>The scenarios are described in the section The changes in noise for the main segments are shown below: L03: Winsley Hill daytime <img src="plots/L03_noise_day.png" class="img-fluid"> Night time (23:00 to 07:00) <img src="plots/L03_noise_night.png" class="img-fluid"> L04: Winsley by-pass day time <img src="plots/L04_noise_day.png" class="img-fluid"> Night time <img src="plots/L04_noise_night.png" class="img-fluid"> L06: Bradford on Avon day time <img src="plots/L06_noise_day.png" class="img-fluid"> Night time <img src="plots/L06_noise_night.png" class="img-fluid"> These changes werre summarised in change matricies as required by the TAG workbook and exported to a <a href="https://docs.google.com/spreadsheets/d/1ye5mGe87G8MOEXqLE1CDZjKf7IeSbZD_Zn87ZR_CpzE/edit?usp=sharing">google sheet</a> which is linked to the <a href="https://docs.google.com/spreadsheets/d/1ucvtuX5xq0Dq6FAKIRIEckvFTT6Pji7p90nkgnsfb7Y/edit?usp=sharing">Noise Assessment Workbook</a></p>
+<p>The scenarios are described in the section The changes in noise for the main segments are shown below:</p>
+<section id="l03-winsley-hill-daytime" class="level2">
+<h2 class="anchored" data-anchor-id="l03-winsley-hill-daytime">L03: Winsley Hill daytime</h2>
+<p><img src="plots/L03_noise_day.png" class="img-fluid"> Night time (23:00 to 07:00) <img src="plots/L03_noise_night.png" class="img-fluid"></p>
+</section>
+<section id="l04-winsley-by-pass-day-time" class="level2">
+<h2 class="anchored" data-anchor-id="l04-winsley-by-pass-day-time">L04: Winsley by-pass day time</h2>
+<p><img src="plots/L04_noise_day.png" class="img-fluid"> Night time <img src="plots/L04_noise_night.png" class="img-fluid"> ## L06: Bradford on Avon day time</p>
+<p><img src="plots/L06_noise_day.png" class="img-fluid"> Night time <img src="plots/L06_noise_night.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="outputs" class="level1">
+<h1>Outputs</h1>
+<p>These changes werre summarised in change matricies as required by the TAG workbook and exported to a <a href="https://docs.google.com/spreadsheets/d/1ye5mGe87G8MOEXqLE1CDZjKf7IeSbZD_Zn87ZR_CpzE/edit?usp=sharing">google sheet</a> which is linked to the <a href="https://docs.google.com/spreadsheets/d/1ucvtuX5xq0Dq6FAKIRIEckvFTT6Pji7p90nkgnsfb7Y/edit?usp=sharing">Noise Assessment Workbook</a></p>
 <p>The number of houses affected are shown in the table below.</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -255,16 +284,16 @@ Scenario D
 Households experiencing increased daytime noise in forecast year:
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 </tr>
 <tr>
@@ -272,16 +301,16 @@ Households experiencing increased daytime noise in forecast year:
 Households experiencing reduced daytime noise in forecast year:
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 86.55%">94</span>
+94
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 58.33%">115</span>
+115
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 78.08%">379</span>
+379
 </td>
 </tr>
 <tr>
@@ -289,16 +318,16 @@ Households experiencing reduced daytime noise in forecast year:
 Households experiencing increased night time noise in forecast year:
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+0
 </td>
 </tr>
 <tr>
@@ -306,16 +335,16 @@ Households experiencing increased night time noise in forecast year:
 Households experiencing reduced night time noise in forecast year:
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+0
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">113</span>
+113
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">240</span>
+240
 </td>
 <td style="text-align:right;">
-<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">522</span>
+522
 </td>
 </tr>
 </tbody>
@@ -323,9 +352,135 @@ Households experiencing reduced night time noise in forecast year:
 </div>
 </div>
 <p>The estimated cost benefit from government TAG is shown in the table below.</p>
-<p>library(formattable)</p>
-<p>ft = formattable(cost_df, list( area(col = c(<code>Scenario A</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario B</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario C</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario D</code>)) ~ normalize_bar(“red”, 0.2) )) ft</p>
-<p>``</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+cost
+</th>
+<th style="text-align:right;">
+Scenario A
+</th>
+<th style="text-align:right;">
+Scenario B
+</th>
+<th style="text-align:right;">
+Scenario C
+</th>
+<th style="text-align:right;">
+Scenario D
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Net present value of impact on sleep disturbance (£):
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 64.84%">957721.93</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 74.52%">1944148.32</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 67.27%">4162644.0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Net present value of impact on amenity (£):
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 41.36%">474746.27</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 35.49%">583033.05</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 39.88%">1832765.7</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Net present value of impact on AMI (£):
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 26.08%">160408.33</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 24.42%">197226.56</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 25.34%">596050.6</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Net present value of impact on stroke (£):
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.00%">35239.11</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.00%">43114.15</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.00%">141846.4</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Net present value of impact on dementia (£):
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.87%">53071.92</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.63%">64931.50</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 20.84%">213681.9</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Total
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 100.00%">1681187.56</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 100.00%">2832453.59</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: red; width: 100.00%">6946988.6</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 
 </section>
