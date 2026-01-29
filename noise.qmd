@@ -65,8 +65,6 @@ L_{\text{build}} = L_{10} - 10 \log_{10}\left(\frac{r}{10}\right)
 $$
 The buildings included in this calculation and their distance are shown for each road segment in the figure below
 
-
-
 where:
 
 and $r$ is the horizontal distance from the road to the building façade (m). the from the road to the building (m).
@@ -82,25 +80,48 @@ L_{\mathrm{Aeq},P}
 10^{L_{\mathrm{Aeq},1h,i}/10}
 \right)
 $$
+The current noise exposure by hour is estimated
 
 The scenarios are described in the section
 The changes in noise for the main segments are shown below:
 
-## L03: Winsley Hill daytime
+## L03: Winsley Hill
+### Baseline situation by hour
+This is the estimated noise exposure for each building within 200m
+![](plots/L03_L_mean_noise.gif)
+
+### day time 07:00-23:00
 
 ![](plots/L03_noise_day.png)
-Night time (23:00 to 07:00)
+
+### night time 23:00-07:00
+
 ![](plots/L03_noise_night.png)
 
-## L04: Winsley by-pass day time
+## L04: Winsley by-pass
+
+### Baseline situation by hour
+This is the estimated noise exposure for each building within 200m
+![](plots/L04_L_mean_noise.gif)
+
+### day time 07:00-23:00
 
 ![](plots/L04_noise_day.png)
-Night time
+### night time 23:00-07:00
+
 ![](plots/L04_noise_night.png)
-## L06: Bradford on Avon day time
+
+## L06: Bradford on Avon
+
+### Baseline situation by hour
+This is the estimated noise exposure for each building within 200m
+![](plots/L06_L_mean_noise.gif)
+
+### day time 07:00-23:00
 
 ![](plots/L06_noise_day.png)
-Night time
+### night time 23:00-07:00
+
 ![](plots/L06_noise_night.png)
 
 # Outputs

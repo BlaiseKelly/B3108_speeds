@@ -7,11 +7,6 @@ library(osmactive)
 
 source("../stats19_stats/R/get.R")
 
-# import LSOA geometry (not simplified)
-lsoa_geo_gb = st_read("data/LSOA_IMD2025_OSGB1936_-8580071282870403721.gpkg") |> 
-  select(lsoa21_code = LSOA21CD,lsoa21_name = LSOA21NM,geometry = SHAPE) |> 
-  st_transform(4326)
-
 # create a geo referenced point
 area <- st_point(c(-2.285,51.35)) |> 
   st_sfc(crs = 4326) |> 
@@ -37,6 +32,10 @@ osm_buff = osm_drive |>
   st_buffer(100) |> 
 st_transform(4326)
 
+# import LSOA geometry (not simplified)
+lsoa_geo_gb = st_read("data/LSOA_IMD2025_OSGB1936_-8580071282870403721.gpkg") |> 
+  select(lsoa21_code = LSOA21CD,lsoa21_name = LSOA21NM,geometry = SHAPE) |> 
+  st_transform(4326)
 
 lsoa_rd <- st_intersection(lsoa_geo_gb,osm_buff)
 
@@ -80,7 +79,21 @@ buildings_lsoa = buildings[lsoa_area,] |>
   mutate(building_frac = building_area/sum(building_area)) |> 
   mutate(building_pop = Total*building_frac) |> 
   mutate(buildings_per_lsoa = n()) |> 
-  mutate(building_pop2 = Total/buildings_per_lsoa)
+  mutate(building_pop2 = Total/buildings_per_lsoa) 
+
+rd_union = st_union(all_rds)
+
+buildings_lsoa$dist2rd = as.numeric(st_distance(buildings_lsoa, rd_union))
+
+build_200m = buildings_lsoa |> 
+  filter(dist2rd <= 200)
+
+sum(build_200m$building_pop)
+
+b_dist = st_nearest_points(build_600m, rd_union) |> 
+  mutate(mength = st_length(geometry))
+
+mapview(build_200m['building_pop'])
 
 all_rds_union = st_union(all_rds)
 
@@ -176,6 +189,17 @@ tmap_save(tm_lsoa_pop, "plots/lsoa_pop_roadside.png")
 
 top_pop_100m = sum(buildings_roadside$total_pop, na.rm = TRUE)
 
+roadside_no2 = 10
+
+buildings_roadside_aq = buildings_roadside |> 
+  mutate(ahc_lower_pp = roadside_no2*0.14*0.83,
+         ahc_upper_pp = roadside_no2*0.14*32.17) |> 
+  mutate(cost_lower = ahc_lower_pp*total_pop,
+         cost_upper = ahc_upper_pp*total_pop)
+
+sum(buildings_roadside_aq$cost_lower)
+sum(buildings_roadside_aq$cost_upper)
+
 # create scale
 pop_bks <- c(0,1,2,4,8,20,40,80, 100,200,500, 1000, 2000,4000, 8000, 20000, 40000, 100000)
 #pop_bks <- c(0, 200, 800, 2000, 50000, 100000)
@@ -193,5 +217,7 @@ tm_ws <- tm_shape(r_b) +
   tm_title(text = yrz, size = 4)+
   tm_facets(nrow = 1, ncol = 1)+
   tm_credits("Source: Landscan Global, Oak Ridge National Laboratory. https://doi.org/10.48690/1532445")
+
+
 
 

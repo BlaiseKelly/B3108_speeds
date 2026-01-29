@@ -34,7 +34,6 @@ load("data/run_03012026.RData")
 TAG_A1.3.3 = read.xlsx("https://assets.publishing.service.gov.uk/media/694a907b72075a1d4a508a58/tag-data-book-v2-02.xlsm",
                        sheet = "A1.3.3", startRow = 25)
 
-
 TAG_A1.3.4 = read.xlsx("https://assets.publishing.service.gov.uk/media/694a907b72075a1d4a508a58/tag-data-book-v2-02.xlsm",
                        sheet = "A1.3.4", startRow = 25)
 
@@ -52,8 +51,8 @@ hour_lookup = data.frame(hour = as.character(seq(1,24)-1),
 
 TAG_A1.3.4_4 = expand.grid(day = c("weekday","weekend"), hour = as.character(seq(1,24)-1),direction_of_travel = c("E","W")) |>
   left_join(hour_lookup, by = "hour") |>
-  mutate(tag_hour = ifelse(day == "weekend", "weekend",tag_hour)) |>
-  left_join(TAG_A1.3.4_3, by = c("tag_hour" = "hour")) |>
+  mutate(tag_hour = ifelse(day == "weekend", "weekend",tag_hour)) |> 
+  left_join(TAG_A1.3.4_3, by = c("tag_hour" = "hour")) |> 
   select(-tag_hour) |>
   mutate(journey = gsub(" ", "",journey)) |>
   mutate(journey = gsub("Non–Work", "Commuting&Other",journey))
@@ -90,16 +89,30 @@ counts_2019 = read.csv("https://storage.googleapis.com/dft-statistics/road-traff
          hgvs_3_or_4_articulated_axle,hgvs_5_articulated_axle,hgvs_6_articulated_axle) |>
   melt(c("direction_of_travel"),variable.name = "mode", value.name = "adjusted_count")
 
+download.file("https://assets.publishing.service.gov.uk/media/684965113a2aa5ba84d1dee2/tra0307-traffic-distribution-by-time-of-day.ods", destfile = "data/tra0307.ods", mode = "wb")
+
+tra0307 = readODS::read_ods("data/tra0307.ods", sheet = "TRA0307", skip = 4) |> 
+  mutate(hour = str_sub(`Time of Day`, 1,-10)) |> 
+  filter(Year == "2024") |> 
+  select(hour,Monday,Tuesday,Wednesday,Thursday, Friday, Saturday, Sunday) |> 
+  melt("hour", value.name = "frac") |> 
+  group_by(variable) |> 
+  mutate(frac = frac/sum(frac))
+
+
+kr8d8_days = kr8d8 |> 
+  mutate(dow = as.character(wday(date, label = TRUE, abbr = FALSE))) |> 
+  mutate(hour = str_sub(format(date),12, -4)) |> 
+  left_join(tra0307, by = c("dow" = "variable", "hour"))
+
 raw_tot = raw_counts |>
   group_by(direction_of_travel,mode) |>
   summarise(raw_count = sum(raw_count))
 
 count_tot = counts_2019 |>
   group_by(direction_of_travel,mode) |>
-  summarise(adjusted_count = sum(adjusted_count)) |>
-  inner_join(raw_tot) |>
-  mutate(night_time = adjusted_count-raw_count) |>
-  mutate(night_time = ifelse(night_time < 0,0,night_time))
+  summarise(adjusted_count = sum(adjusted_count))
+  inner_join(kr8d8_days) 
 
 count_night = count_tot |> transmute(direction_of_travel, mode, raw_count = round(night_time/12,1))
 
@@ -111,20 +124,23 @@ kr8d8_2 = cutData(kr8d8, type = "weekend") |>
 
 #saveRDS(kr8d8, "data/d8s.RDS")
 
-AADT = expand.grid(hour = seq(1,24)-1,direction_of_travel = c("E","W")) |>
-  left_join(raw_counts, by = c("hour", "direction_of_travel"))
+AADT_d8s = expand.grid(hour = unique(tra0307$hour),direction_of_travel = c("E","W")) |>
+  left_join(kr8d8_days, by = c("hour")) |> 
+  left_join(count_tot, by = "direction_of_travel") |> 
+  mutate(count = frac*adjusted_count) |> 
+  transmute(date,wday,hour = hour(date),direction_of_travel,mode,raw_count = count)
 
-AADT_night = AADT |>
-  filter(is.na(raw_count)) |>
-  select(-mode,-raw_count) |>
-  left_join(count_night, by = c("direction_of_travel"))
-
-AADT_day = AADT |>
-  filter(!is.na(raw_count))
-
-AADT_all = rbind(AADT_day, AADT_night)
-
-AADT_d8s = left_join(kr8d8,AADT_all, by = c("hour"))
+# AADT_night = AADT |>
+#   filter(is.na(raw_count)) |>
+#   select(-mode,-raw_count) |>
+#   left_join(count_night, by = c("direction_of_travel"))
+# 
+# AADT_day = AADT |>
+#   filter(!is.na(raw_count))
+# 
+# AADT_all = rbind(AADT_day, AADT_night)
+# 
+# AADT_d8s = left_join(kr8d8,AADT_all, by = c("hour"))
 
 lookup_veh = data.frame(dft_vehicle = c("two_wheeled_motor_vehicles","cars_and_taxis","buses_and_coaches","lgvs","hgvs_2_rigid_axle", "hgvs_3_rigid_axle","hgvs_4_or_more_rigid_axle",
                                         "hgvs_3_or_4_articulated_axle","hgvs_5_articulated_axle","hgvs_6_articulated_axle"),
@@ -349,10 +365,9 @@ tmap_save(tm1, paste0("plots/B3108_speeds_",c,".png"))
 # combine link speed data with rd data and costs
 journey_times = link_speed_dat |>
   mutate(direction = diretion) |>
-  left_join(all_rds,by = "ID") |>
+  left_join(all_rds,by = "ID") |> 
   mutate(speed_ms = osm_length_m/journey_time) |>
-  mutate(speed_kph = speed_ms*3.6) |>
-  mutate(speed_mph = speed_kph*0.6214) |>
+  mutate(speed_mph = speed*0.6214) |> 
   mutate(speed_scenario_A = ifelse(speed_mph > scenario_A,scenario_A,speed_mph),
          speed_scenario_B = ifelse(speed_mph > scenario_B,scenario_B,speed_mph),
          speed_scenario_C = ifelse(speed_mph > scenario_C,scenario_C,speed_mph),
@@ -360,7 +375,8 @@ journey_times = link_speed_dat |>
   mutate(jt_scenario_A = osm_length_m/(speed_scenario_A/0.6214/3.6),
          jt_scenario_B = osm_length_m/(speed_scenario_B/0.6214/3.6),
          jt_scenario_C = osm_length_m/(speed_scenario_C/0.6214/3.6),
-         jt_scenario_D = osm_length_m/(speed_scenario_D/0.6214/3.6)) |>
+         jt_scenario_D = osm_length_m/(speed_scenario_D/0.6214/3.6)) |> 
+  select(-x) |> 
   group_by(date,direction) |>
   summarise(current_jt = sum(journey_time),
             scenario_A_jt = sum(jt_scenario_A),
@@ -524,7 +540,7 @@ cycle_path_benefit_pounds = (sum(journey_trips$cycle_time_tot,na.rm = TRUE)/60)*
 
 tot_bike_trips = sum(journey_trips$pedal_cycles,na.rm = TRUE)/6
 
-save(AADT_diurnal_direction,journey_times_link, file = "data/table_dat.RData")
+save(AADT_diurnal_direction,journey_times_link, TAG_A1.3.4_4, TAG_A1.3.5_3, journey_times, file = "data/table_dat.RData")
 
 # combine into one link
 full_rd = osm_drive |>

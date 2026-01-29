@@ -143,7 +143,7 @@ crashes_B3108 = crashes[osm_buff,]
 
 crashes_B3108 = match_tag(crashes_B3108)
 
-tot_cost = sum(crashes_B3108$cost_per_collision)
+tot_cost = sum(crashes_B3108$cost_per_collision)/15
 
 crashes_B3108$ID = all_rds$ID[st_nearest_feature(crashes_B3108,all_rds)]
 
@@ -175,7 +175,12 @@ casualties_B3108 = casualties |>
   filter(collision_index %in% crashes_B3108$collision_index) |> 
   mutate(fatal_count = if_else(casualty_severity == "Fatal", 1, 0))
 
-lsoa_home = lsoa_home_plot(casualty_df = casualties_B3108,lsoa_geo = )
+# import LSOA geometry (not simplified)
+lsoa_geo_gb = st_read("data/LSOA_IMD2025_OSGB1936_-8580071282870403721.gpkg") |> 
+  select(lsoa21_code = LSOA21CD,lsoa21_name = LSOA21NM,geometry = SHAPE) |> 
+  st_transform(4326)
+
+lsoa_home = lsoa_home_plot(casualty_df = casualties_B3108, lsoa_geo = lsoa_geo_gb)
 
 
 ## import nuts geo lvel 3 (cities) from eurostat and filter for UK
@@ -205,3 +210,35 @@ index_df = casualties_index(casualties = casualties_wilshire, base_year = 2010, 
 
 p1 = index_plot(indexes = index_df,city = "Wiltshire",plot_dir = "plots/", base_year = 2010, end_year = 2024)
 
+cra_cas_osm <- casualty_osm_link(osm_links = osm_drive, casualties = casualties_B3108, crashes = crashes_B3108,
+                                 year_from = 2010, year_to = 2024,
+                                 casualties_buffer = 20) |> 
+  mutate(sev_plot_size = if_else(Fatal == 1, 1.5, Serious))
+
+cra_cas_osm = inner_join(crashes_B3108, casualties_B3108) 
+
+cas_scale <- c("Car occupant", "Motorcyclist", "Cyclist", "Taxi occupant",
+               "Goods vehicle occupant", "Bus occupant", "Other vehicle",
+               "Data missing", "Mobility scooter rider",
+               "Agricultural vehicle occupant", "Horse rider",
+               "E-scooter rider", "Pedestrian")
+
+unique(cra_cas_osm$casualty_type)
+
+cra_cas_osm$casualty_type <- factor(cra_cas_osm$casualty_type, levels = cas_scale)
+
+bm_masked = basemaps::basemap_raster(osm_buff, map_service = "carto",increase_zoom =2, map_type = "light")
+
+tm2 <- tm_shape(bm_masked)+
+  tm_rgb()+
+  tm_shape(cra_cas_osm)+
+  tm_bubbles(fill = "casualty_type",
+             shape = "casualty_type",
+             size = "casualty_adjusted_severity_serious",
+             shape.legend = tm_legend_combine("fill"),
+             size.legend = tm_legend(title = "casualty_adjusted_severity_serious")) +
+  tm_layout(frame = FALSE)+
+  tm_legend(position = c(0.13,0.94))+
+  tm_title("Collision location with casualty type represented by shape and colour and severity represented by size. B3108: 2010 and 2024")
+
+tmap_save(tm2, "plots/cas_type_sev_map.png", width = 7090, height = 2500, dpi = 440)
