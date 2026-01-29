@@ -154,8 +154,22 @@ window.Quarto = {
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#vehicle-noise" id="toc-vehicle-noise" class="nav-link" data-scroll-target="#vehicle-noise">Vehicle Noise</a>
   <ul class="collapse">
-  <li><a href="#l03-winsley-hill-daytime" id="toc-l03-winsley-hill-daytime" class="nav-link" data-scroll-target="#l03-winsley-hill-daytime">L03: Winsley Hill daytime</a></li>
-  <li><a href="#l04-winsley-by-pass-day-time" id="toc-l04-winsley-by-pass-day-time" class="nav-link" data-scroll-target="#l04-winsley-by-pass-day-time">L04: Winsley by-pass day time</a></li>
+  <li><a href="#l03-winsley-hill" id="toc-l03-winsley-hill" class="nav-link" data-scroll-target="#l03-winsley-hill">L03: Winsley Hill</a>
+  <ul class="collapse">
+  <li><a href="#baseline-situation-by-hour" id="toc-baseline-situation-by-hour" class="nav-link" data-scroll-target="#baseline-situation-by-hour">Baseline situation by hour</a></li>
+  <li><a href="#day-time-0700-2300" id="toc-day-time-0700-2300" class="nav-link" data-scroll-target="#day-time-0700-2300">day time 07:00-23:00</a></li>
+  <li><a href="#night-time-2300-0700" id="toc-night-time-2300-0700" class="nav-link" data-scroll-target="#night-time-2300-0700">night time 23:00-07:00</a></li>
+  </ul></li>
+  <li><a href="#l04-winsley-by-pass" id="toc-l04-winsley-by-pass" class="nav-link" data-scroll-target="#l04-winsley-by-pass">L04: Winsley by-pass</a>
+  <ul class="collapse">
+  <li><a href="#baseline-situation-by-hour-1" id="toc-baseline-situation-by-hour-1" class="nav-link" data-scroll-target="#baseline-situation-by-hour-1">Baseline situation by hour</a></li>
+  <li><a href="#day-time-0700-2300-1" id="toc-day-time-0700-2300-1" class="nav-link" data-scroll-target="#day-time-0700-2300-1">day time 07:00-23:00</a></li>
+  </ul></li>
+  <li><a href="#l06-bradford-on-avon" id="toc-l06-bradford-on-avon" class="nav-link" data-scroll-target="#l06-bradford-on-avon">L06: Bradford on Avon</a>
+  <ul class="collapse">
+  <li><a href="#baseline-situation-by-hour-2" id="toc-baseline-situation-by-hour-2" class="nav-link" data-scroll-target="#baseline-situation-by-hour-2">Baseline situation by hour</a></li>
+  <li><a href="#day-time-0700-2300-2" id="toc-day-time-0700-2300-2" class="nav-link" data-scroll-target="#day-time-0700-2300-2">day time 07:00-23:00</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#outputs" id="toc-outputs" class="nav-link" data-scroll-target="#outputs">Outputs</a></li>
   </ul>
@@ -240,16 +254,46 @@ L_{\mathrm{Aeq},P}
 \sum_{i=1}^{N_P}
 10^{L_{\mathrm{Aeq},1h,i}/10}
 \right)
-\]</span></p>
+\]</span> The current noise exposure by hour is estimated</p>
 <p>The scenarios are described in the section The changes in noise for the main segments are shown below:</p>
-<section id="l03-winsley-hill-daytime" class="level2">
-<h2 class="anchored" data-anchor-id="l03-winsley-hill-daytime">L03: Winsley Hill daytime</h2>
-<p><img src="plots/L03_noise_day.png" class="img-fluid"> Night time (23:00 to 07:00) <img src="plots/L03_noise_night.png" class="img-fluid"></p>
+<section id="l03-winsley-hill" class="level2">
+<h2 class="anchored" data-anchor-id="l03-winsley-hill">L03: Winsley Hill</h2>
+<section id="baseline-situation-by-hour" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-situation-by-hour">Baseline situation by hour</h3>
+<p>This is the estimated noise exposure for each building within 200m <img src="plots/L03_L_mean_noise.gif" class="img-fluid"></p>
 </section>
-<section id="l04-winsley-by-pass-day-time" class="level2">
-<h2 class="anchored" data-anchor-id="l04-winsley-by-pass-day-time">L04: Winsley by-pass day time</h2>
-<p><img src="plots/L04_noise_day.png" class="img-fluid"> Night time <img src="plots/L04_noise_night.png" class="img-fluid"> ## L06: Bradford on Avon day time</p>
-<p><img src="plots/L06_noise_day.png" class="img-fluid"> Night time <img src="plots/L06_noise_night.png" class="img-fluid"></p>
+<section id="day-time-0700-2300" class="level3">
+<h3 class="anchored" data-anchor-id="day-time-0700-2300">day time 07:00-23:00</h3>
+<p><img src="plots/L03_noise_day.png" class="img-fluid"></p>
+</section>
+<section id="night-time-2300-0700" class="level3">
+<h3 class="anchored" data-anchor-id="night-time-2300-0700">night time 23:00-07:00</h3>
+<p><img src="plots/L03_noise_night.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="l04-winsley-by-pass" class="level2">
+<h2 class="anchored" data-anchor-id="l04-winsley-by-pass">L04: Winsley by-pass</h2>
+<section id="baseline-situation-by-hour-1" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-situation-by-hour-1">Baseline situation by hour</h3>
+<p>This is the estimated noise exposure for each building within 200m <img src="plots/L04_L_mean_noise.gif" class="img-fluid"></p>
+</section>
+<section id="day-time-0700-2300-1" class="level3">
+<h3 class="anchored" data-anchor-id="day-time-0700-2300-1">day time 07:00-23:00</h3>
+<p><img src="plots/L04_noise_day.png" class="img-fluid"> ### night time 23:00-07:00</p>
+<p><img src="plots/L04_noise_night.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="l06-bradford-on-avon" class="level2">
+<h2 class="anchored" data-anchor-id="l06-bradford-on-avon">L06: Bradford on Avon</h2>
+<section id="baseline-situation-by-hour-2" class="level3">
+<h3 class="anchored" data-anchor-id="baseline-situation-by-hour-2">Baseline situation by hour</h3>
+<p>This is the estimated noise exposure for each building within 200m <img src="plots/L06_L_mean_noise.gif" class="img-fluid"></p>
+</section>
+<section id="day-time-0700-2300-2" class="level3">
+<h3 class="anchored" data-anchor-id="day-time-0700-2300-2">day time 07:00-23:00</h3>
+<p><img src="plots/L06_noise_day.png" class="img-fluid"> ### night time 23:00-07:00</p>
+<p><img src="plots/L06_noise_night.png" class="img-fluid"></p>
+</section>
 </section>
 </section>
 <section id="outputs" class="level1">

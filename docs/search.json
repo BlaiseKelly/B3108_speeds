@@ -91,17 +91,24 @@
     "text": "The noise level at each building for each hour of a typical week has been calculated using the DfT AADT Count point 947637 along Winsley Hill, extrapolated with the typical diurnal profile using 946637 TRA0307 which gives the profile below:\n\nThese flows were applied to the full length of the road.\nThe noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.\nThis calculation does not include:\n\nGround absorption\n\nScreening / barriers\n\nReflections\n\nFaçade corrections\n\nRoad gradient\n\nRoad surface correction"
   },
   {
-    "objectID": "noise.html#l03-winsley-hill-daytime",
-    "href": "noise.html#l03-winsley-hill-daytime",
+    "objectID": "noise.html#l03-winsley-hill",
+    "href": "noise.html#l03-winsley-hill",
     "title": "B3108 Noise Analysis",
-    "section": "L03: Winsley Hill daytime",
-    "text": "L03: Winsley Hill daytime\n Night time (23:00 to 07:00)"
+    "section": "L03: Winsley Hill",
+    "text": "L03: Winsley Hill\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n\n\n\nnight time 23:00-07:00"
   },
   {
-    "objectID": "noise.html#l04-winsley-by-pass-day-time",
-    "href": "noise.html#l04-winsley-by-pass-day-time",
+    "objectID": "noise.html#l04-winsley-by-pass",
+    "href": "noise.html#l04-winsley-by-pass",
     "title": "B3108 Noise Analysis",
-    "section": "L04: Winsley by-pass day time",
-    "text": "L04: Winsley by-pass day time\n Night time  ## L06: Bradford on Avon day time\n Night time"
+    "section": "L04: Winsley by-pass",
+    "text": "L04: Winsley by-pass\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
+  },
+  {
+    "objectID": "noise.html#l06-bradford-on-avon",
+    "href": "noise.html#l06-bradford-on-avon",
+    "title": "B3108 Noise Analysis",
+    "section": "L06: Bradford on Avon",
+    "text": "L06: Bradford on Avon\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
   }
 ]
