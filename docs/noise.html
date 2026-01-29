@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Blaise Kelly">
+<meta name="dcterms.date" content="2028-03-01">
 
-<title>B3108_speeds – B3108 speed anlaysis</title>
+<title>B3108 Noise Analysis – B3108 speed anlaysis</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -69,6 +71,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -97,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./noise.html"> 
+    <a class="nav-link active" href="./noise.html" aria-current="page"> 
 <span class="menu-text">Noise</span></a>
   </li>  
   <li class="nav-item">
@@ -115,22 +146,40 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#vehicle-noise" id="toc-vehicle-noise" class="nav-link active" data-scroll-target="#vehicle-noise">Vehicle Noise</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">B3108_speeds</h1>
+<h1 class="title">B3108 Noise Analysis</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Blaise Kelly </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 1, 2028</p>
+    </div>
+  </div>
   
     
   </div>
@@ -140,10 +189,146 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This is a Quarto website.</p>
-<p>To learn more about Quarto websites visit <a href="https://quarto.org/docs/websites" class="uri">https://quarto.org/docs/websites</a>.</p>
+<p>The noise level at each building for each hour of a typical week has been calculated using the <a href="https://storage.googleapis.com/dft-statistics/road-traffic/downloads/aadfbydirection/count_point_id/dft_aadfbydirection_count_point_id_947637.csv%22">DfT AADT Count point 947637</a> along Winsley Hill, extrapolated with the typical diurnal profile using 946637 <a href="https://assets.publishing.service.gov.uk/media/684965113a2aa5ba84d1dee2/tra0307-traffic-distribution-by-time-of-day.ods">TRA0307</a> which gives the profile below:</p>
+<p><img src="plots/AADT_noise.png" class="img-fluid"></p>
+<p>These flows were applied to the full length of the road.</p>
+<p>The noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.</p>
+<p>This calculation does not include:<br>
+- Ground absorption<br>
+- Screening / barriers<br>
+- Reflections<br>
+- Façade corrections<br>
+- Road gradient<br>
+- Road surface correction</p>
+<section id="vehicle-noise" class="level2">
+<h2 class="anchored" data-anchor-id="vehicle-noise">Vehicle Noise</h2>
+<p><span class="math inline">\(A_i\)</span> The vehicle-type–specific noise emission constant, referenced to a 10 m distance, taken from TAG / CRTN-based road traffic noise tables: Car = 27.7 LGV = 34.7 HGV = 39.7 <span class="math display">\[
+E_{i,10} = N_i \cdot 10^{\frac{A_i + 10 \log_{10}(v_i)}{10}}
+\]</span></p>
+<p>where <span class="math inline">\(N_i\)</span> is the hourly traffic flow, <span class="math inline">\(v_i\)</span> is the mean speed (km h<span class="math inline">\(^{-1}\)</span>), which was calculated from the google API for each hour of a typical week.</p>
+<p>Summing up the outputs for each vehicle type: <span class="math display">\[
+E_{10} = \sum_i E_{i,10}
+\]</span> Gives the L10 values for each road segment. <span class="math display">\[
+L_{10} = 10 \log_{10}(E_{10})
+\]</span> <img src="plots/AADT_L10.png" class="img-fluid"> The 10m roadside value is propagated to the building façade. <span class="math display">\[
+L_{\text{build}} = L_{10} - 10 \log_{10}\left(\frac{r}{10}\right)
+\]</span> The buildings included in this calculation and their distance are shown for each road segment in the figure below</p>
+<p>where:</p>
+<p>and <span class="math inline">\(r\)</span> is the horizontal distance from the road to the building façade (m). the from the road to the building (m).</p>
+<p>And aggregating to assessment periods: <span class="math display">\[
+L_{\mathrm{Aeq},P}
+=
+10 \log_{10}
+\left(
+\frac{1}{N_P}
+\sum_{i=1}^{N_P}
+10^{L_{\mathrm{Aeq},1h,i}/10}
+\right)
+\]</span></p>
+<p>The scenarios are described in the section The changes in noise for the main segments are shown below: L03: Winsley Hill daytime <img src="plots/L03_noise_day.png" class="img-fluid"> Night time (23:00 to 07:00) <img src="plots/L03_noise_night.png" class="img-fluid"> L04: Winsley by-pass day time <img src="plots/L04_noise_day.png" class="img-fluid"> Night time <img src="plots/L04_noise_night.png" class="img-fluid"> L06: Bradford on Avon day time <img src="plots/L06_noise_day.png" class="img-fluid"> Night time <img src="plots/L06_noise_night.png" class="img-fluid"> These changes werre summarised in change matricies as required by the TAG workbook and exported to a <a href="https://docs.google.com/spreadsheets/d/1ye5mGe87G8MOEXqLE1CDZjKf7IeSbZD_Zn87ZR_CpzE/edit?usp=sharing">google sheet</a> which is linked to the <a href="https://docs.google.com/spreadsheets/d/1ucvtuX5xq0Dq6FAKIRIEckvFTT6Pji7p90nkgnsfb7Y/edit?usp=sharing">Noise Assessment Workbook</a></p>
+<p>The number of houses affected are shown in the table below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-condensed">
+<thead>
+<tr>
+<th style="text-align:right;">
+…1
+</th>
+<th style="text-align:right;">
+Scenario A
+</th>
+<th style="text-align:right;">
+Scenario B
+</th>
+<th style="text-align:right;">
+Scenario C
+</th>
+<th style="text-align:right;">
+Scenario D
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+Households experiencing increased daytime noise in forecast year:
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Households experiencing reduced daytime noise in forecast year:
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 86.55%">94</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 58.33%">115</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 78.08%">379</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Households experiencing increased night time noise in forecast year:
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 20.00%">0</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+Households experiencing reduced night time noise in forecast year:
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 0.00%">0</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">113</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">240</span>
+</td>
+<td style="text-align:right;">
+<span style="display: inline-block; direction: rtl; unicode-bidi: plaintext; border-radius: 4px; padding-right: 2px; background-color: green; width: 100.00%">522</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>The estimated cost benefit from government TAG is shown in the table below.</p>
+<p>library(formattable)</p>
+<p>ft = formattable(cost_df, list( area(col = c(<code>Scenario A</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario B</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario C</code>)) ~ normalize_bar(“red”, 0.2), area(col = c(<code>Scenario D</code>)) ~ normalize_bar(“red”, 0.2) )) ft</p>
+<p>``</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

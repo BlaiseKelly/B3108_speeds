@@ -70,6 +70,13 @@
     "text": "Local population calculation\nThe Office for National Statistics (ONS) compiles regularly updated population data for the ‘Local Super Output Areas’ (LSOA). The plot below shows the total population for LSOA areas that intersect the B3108.  In order to estimate the population close to the road the population was distributed over the OSM buildings shapes based on the area of the buildings. The population of each building that falls within a 100m buffer of either side of the road was summed. It is estimated that just over 1400 people live within 100 metres of the B3108, the majority along Winsley Road in Bradford on Avon."
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "B3108_speeds",
+    "section": "",
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -77,10 +84,17 @@
     "text": "About this site"
   },
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "B3108_speeds",
+    "objectID": "noise.html",
+    "href": "noise.html",
+    "title": "B3108 Noise Analysis",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites."
+    "text": "The noise level at each building for each hour of a typical week has been calculated using the DfT AADT Count point 947637 along Winsley Hill, extrapolated with the typical diurnal profile using 946637 TRA0307 which gives the profile below:\nThese flows were applied to the full length of the road.\nThe noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.\nThis calculation does not include:\n- Ground absorption\n- Screening / barriers\n- Reflections\n- Façade corrections\n- Road gradient\n- Road surface correction"
+  },
+  {
+    "objectID": "noise.html#vehicle-noise",
+    "href": "noise.html#vehicle-noise",
+    "title": "B3108 Noise Analysis",
+    "section": "Vehicle Noise",
+    "text": "Vehicle Noise\n\\(A_i\\) The vehicle-type–specific noise emission constant, referenced to a 10 m distance, taken from TAG / CRTN-based road traffic noise tables: Car = 27.7 LGV = 34.7 HGV = 39.7 \\[\nE_{i,10} = N_i \\cdot 10^{\\frac{A_i + 10 \\log_{10}(v_i)}{10}}\n\\]\nwhere \\(N_i\\) is the hourly traffic flow, \\(v_i\\) is the mean speed (km h\\(^{-1}\\)), which was calculated from the google API for each hour of a typical week.\nSumming up the outputs for each vehicle type: \\[\nE_{10} = \\sum_i E_{i,10}\n\\] Gives the L10 values for each road segment. \\[\nL_{10} = 10 \\log_{10}(E_{10})\n\\]  The 10m roadside value is propagated to the building façade. \\[\nL_{\\text{build}} = L_{10} - 10 \\log_{10}\\left(\\frac{r}{10}\\right)\n\\] The buildings included in this calculation and their distance are shown for each road segment in the figure below\nwhere:\nand \\(r\\) is the horizontal distance from the road to the building façade (m). the from the road to the building (m).\nAnd aggregating to assessment periods: \\[\nL_{\\mathrm{Aeq},P}\n=\n10 \\log_{10}\n\\left(\n\\frac{1}{N_P}\n\\sum_{i=1}^{N_P}\n10^{L_{\\mathrm{Aeq},1h,i}/10}\n\\right)\n\\]\nThe scenarios are described in the section The changes in noise for the main segments are shown below: L03: Winsley Hill daytime  Night time (23:00 to 07:00)  L04: Winsley by-pass day time  Night time  L06: Bradford on Avon day time  Night time  These changes werre summarised in change matricies as required by the TAG workbook and exported to a google sheet which is linked to the Noise Assessment Workbook\nThe number of houses affected are shown in the table below.\n\n\n\n\n\n\n…1\n\n\nScenario A\n\n\nScenario B\n\n\nScenario C\n\n\nScenario D\n\n\n\n\n\n\nHouseholds experiencing increased daytime noise in forecast year:\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\nHouseholds experiencing reduced daytime noise in forecast year:\n\n\n0\n\n\n94\n\n\n115\n\n\n379\n\n\n\n\nHouseholds experiencing increased night time noise in forecast year:\n\n\n0\n\n\n0\n\n\n0\n\n\n0\n\n\n\n\nHouseholds experiencing reduced night time noise in forecast year:\n\n\n0\n\n\n113\n\n\n240\n\n\n522\n\n\n\n\n\n\nThe estimated cost benefit from government TAG is shown in the table below.\nlibrary(formattable)\nft = formattable(cost_df, list( area(col = c(Scenario A)) ~ normalize_bar(“red”, 0.2), area(col = c(Scenario B)) ~ normalize_bar(“red”, 0.2), area(col = c(Scenario C)) ~ normalize_bar(“red”, 0.2), area(col = c(Scenario D)) ~ normalize_bar(“red”, 0.2) )) ft\n``"
   }
 ]

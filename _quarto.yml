@@ -8,6 +8,8 @@ website:
     left:
       - href: report.qmd
         text: Home
+      - href: noise.qmd
+        text: Noise
       - about.qmd
 
 format:
