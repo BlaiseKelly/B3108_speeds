@@ -55,8 +55,6 @@ count_tot = counts_2019 |>
   group_by(direction_of_travel,mode) |>
   summarise(adjusted_count = sum(adjusted_count))
 
-inner_join(kr8d8_days) 
-
 #saveRDS(kr8d8, "data/d8s.RDS")
 
 AADT_d8s = expand.grid(hour = unique(tra0307$hour),direction_of_travel = c("E","W")) |>
@@ -544,7 +542,7 @@ for (r in all_rds$ID){
 # get background map
 bg <- basemaps::basemap_raster(rd2plot, map_service = "carto", map_type = "light")
 
-cenarios = names(all_scenarios_build2)[3:7]
+cenarios = names(all_scenarios_build2)[3:3]
 
 for (c in cenarios){
   
@@ -577,18 +575,14 @@ for (c in cenarios){
 
 }
 
-tm_all = tmap_arrange(L_mean_A,L_mean_B,L_mean_C,L_mean_D)
-
-tmap_animation(tm_all, filename = paste0("plots/",r,"_noise.gif"),width = 2000,height = 2000, dpi = 350)
 
 }
 
 
-tm_rd_all = tmap_arrange(L01,L02,L03,L04,L05,L06)
 
-tmap_animation(tm_all, filename = paste0("plots/",r,"_noise.gif"),width = 7000,height = 8000, dpi = 600)
 
-all_scenarios_build = left_join(all_scenarios_periods,buildings, by = "osm_id") 
+all_scenarios_build = left_join(all_scenarios_periods,buildings, by = "osm_id") |> 
+  mutate(diff = L_mean-L_mean_D)
 
 st_geometry(all_scenarios_build) = all_scenarios_build$geometry
 r = all_rds$ID[5]
@@ -612,7 +606,9 @@ for (r in all_rds$ID){
   # get background map
   bg <- basemaps::basemap_raster(rd2plot, map_service = "carto", map_type = "light")
   
-  cenarios = names(all_scenarios_build)[3:7]
+  periods = unique(all_scenarios_periods$period)
+  
+  cenarios = names(all_scenarios_build)[4:7]
   
   for (p in periods){
   
@@ -626,15 +622,17 @@ for (r in all_rds$ID){
       filter(period == p) |> 
       mutate(diff = L_mean-!!sym(c))
     
+    m = round(max(all_scenarios_build$diff),1)
+    
     tm1 <- tm_shape(bg)+
       tm_rgb(col_alpha = 1)+
       tm_shape(all_scenarios_build2) +
       tm_polygons(
         fill = "diff",
-        fill.scale = tm_scale_intervals(values = "tol.rainbow_wh_br", breaks = seq(0,3,0.4)),
+        fill.scale = tm_scale_intervals(values = "tol.rainbow_wh_br", breaks = seq(0,m, 0.2)),
         fill.legend = tm_legend(show = TRUE,title = "Noise (dB)", position = pos, frame = FALSE)
       )+
-      tm_title(text = paste0(gsub("L_mean_", "Scenario ",c), " change from baseline at each property during ",p))
+      tm_title(text = paste0(gsub("L_mean_", "Scenario ",c), " DECREASE from baseline at each property during ",p))
     # tm_layout(frame = FALSE, panel.show = FALSE)+
     # tm_animate(by = "date")
     #tm_components(c("tm_legend", "tm_credits"), position = c("left", "top"), bg.color = "grey95")

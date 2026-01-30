@@ -2,4 +2,8 @@
 title: "About"
 ---
 
-About this site
+This site presents an analysis of vehicle speed data for the B3108 road, focusing on patterns, distributions, and insights derived from raw measurements. It was developed as an interactive Quarto website that visualizes and explores the analysis carried out.
+
+The underlying data processing and analysis scripts are maintained in the associated GitHub repository, where all code used to generate the figures, process the raw data, and build the site is available. The repository contains the data cleaning, modelling, and plotting workflows that produce the content shown here. All the analysis, plotting and report generation were carried out using R.
+
+By combining reproducible code with web-ready output, this project provides a transparent, open framework for exploring and understanding traffic speeds on the B3108 and can be extended or adapted to other road speed datasets.
