@@ -7,7 +7,9 @@ website:
   navbar:
     left:
       - href: report.qmd
-        text: Home
+        text: Summary
+      - href: journey_time.qmd
+        text: Time
       - href: noise.qmd
         text: Noise
       - about.qmd
