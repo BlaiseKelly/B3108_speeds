@@ -35,53 +35,39 @@
     "text": "Noise\nThe calculation on noise is shown in the noise tab.The noise level from the vehicle counts and classes were estimated and adjusted to the facade of each building. The biggest impact would be in Winsley village with reductions of on average 2.8dB (equivalent to halving of total sound energy)."
   },
   {
-    "objectID": "journey_time.html",
-    "href": "journey_time.html",
-    "title": "Journey time",
+    "objectID": "noise.html",
+    "href": "noise.html",
+    "title": "B3108 Noise Analysis",
     "section": "",
-    "text": "In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road   L06 is the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
+    "text": "The noise level at each building for each hour of a typical week has been calculated using the DfT AADT Count point 947637 along Winsley Hill, extrapolated with the typical diurnal profile using 946637 TRA0307 which gives the profile below:\n\nThese flows were applied to the full length of the road.\nThe noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.\nThis calculation does not include:\n\nGround absorption\n\nScreening / barriers\n\nReflections\n\nFaçade corrections\n\nRoad gradient\n\nRoad surface correction"
   },
   {
-    "objectID": "journey_time.html#typical-speeds",
-    "href": "journey_time.html#typical-speeds",
-    "title": "Journey time",
-    "section": "",
-    "text": "In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.  \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.  \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.   L05 is the 40 mph section of Winsley Road   L06 is the 30mph section of Winsley Road.  \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
+    "objectID": "noise.html#l03-winsley-hill",
+    "href": "noise.html#l03-winsley-hill",
+    "title": "B3108 Noise Analysis",
+    "section": "L03: Winsley Hill",
+    "text": "L03: Winsley Hill\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n\n\n\nnight time 23:00-07:00"
   },
   {
-    "objectID": "journey_time.html#trip-data",
-    "href": "journey_time.html#trip-data",
-    "title": "Journey time",
-    "section": "Trip data",
-    "text": "Trip data\nThe DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.\nIn 2024 it was estimated that Annual Average Daily Trips (AADT) were similar to 2019. Therefore, 2019 traffic data has been used for this analysis.\nOn average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction."
+    "objectID": "noise.html#l04-winsley-by-pass",
+    "href": "noise.html#l04-winsley-by-pass",
+    "title": "B3108 Noise Analysis",
+    "section": "L04: Winsley by-pass",
+    "text": "L04: Winsley by-pass\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
   },
   {
-    "objectID": "journey_time.html#value-of-time",
-    "href": "journey_time.html#value-of-time",
-    "title": "Journey time",
-    "section": "Value of time",
-    "text": "Value of time\nDelay costs were estimated following UK Department for Transport Transport Analysis Guidance (TAG) using the following approach:\n\nTraffic Data: Annual Average Daily Traffic (AADT) by vehicle type and direction was obtained from DfT count point data for 2019. Hourly and daily traffic distributions were applied using TRA0307 data to estimate traffic volumes by hour, day of week, and - direction.\n\nJourney Purpose Allocation: Traffic was disaggregated by journey purpose (Work, Commuting, Other) using TAG Data Book Table A1.3.4, which provides the proportion of trips by purpose for different vehicle types and time periods.\n\nValues of Time: TAG Data Book Tables A1.3.1-A1.3.5 were applied by vehicle type, journey purpose, and time period to calculate an hourly cost rate for traffic flows (£/hour).\n\nJourney Time Analysis: Observed speeds from [data source] were used to calculate baseline journey times. Scenario journey times were calculated by capping speeds at scenario-specific limits and recalculating journey times for each road segment.\n\nDelay Cost Calculation: For each hour and direction, delay (in seconds) was calculated as the difference between scenario and baseline journey times, converted to hours, and multiplied by the hourly traffic cost rate to estimate total delay costs.\n\nhave been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy\nCalculating for each scenario by direction gives:  \nThe TAG perceived loss to the market for each Scenario over the course of a year is:\n- A: £1,644\n- B: £661,576\n- C: £801,843\n- D: £4,087,308\n   \nEvidence that uniform speed limits are less cognitively challenging\n20mph is most efficient speed for electric vehicles, saving drivers money."
-  },
-  {
-    "objectID": "journey_time.html#value-of-time-1",
-    "href": "journey_time.html#value-of-time-1",
-    "title": "Journey time",
-    "section": "Value of time",
-    "text": "Value of time\nThe tables A1.3.4 and A1.3.5 from TAG data book were imported and reshaped to give a timeseries for each hour of the day.\nTable A1.3.4\nThere are two methods for calculating time, per vehicle or per person. TAG table A1.3.3 gives estimates for occupancies of vehicles for time ranges during the week and weekend averages. However, this can become complicated when deciding trip reason for car occupants. Table A1.3.4 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nTable A1.3.5 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nThese tables are joined to the DfT AADT data to give one table with flows split by trip purpose and assigned a cost."
-  },
-  {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
-    "section": "",
-    "text": "This site presents an analysis of vehicle speed data for the B3108 road, focusing on patterns, distributions, and insights derived from raw measurements. It was developed as an interactive Quarto website that visualizes and explores the analysis carried out.\nThe underlying data processing and analysis scripts are maintained in the associated GitHub repository, where all code used to generate the figures, process the raw data, and build the site is available. The repository contains the data cleaning, modelling, and plotting workflows that produce the content shown here. All the analysis, plotting and report generation were carried out using R.\nBy combining reproducible code with web-ready output, this project provides a transparent, open framework for exploring and understanding traffic speeds on the B3108 and can be extended or adapted to other road speed datasets."
+    "objectID": "noise.html#l06-bradford-on-avon",
+    "href": "noise.html#l06-bradford-on-avon",
+    "title": "B3108 Noise Analysis",
+    "section": "L06: Bradford on Avon",
+    "text": "L06: Bradford on Avon\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "B3108 Speed Limit Analysis",
     "section": "",
-    "text": "The B3108 runs north of Winsley conurbation connecting Warminster Road in the West, with Bath Road in Bradford on Avon.\nThere have been on-going discussions regarding the speed limit on this road. This document aims to expand on some of the points mentioned in Briefing Note: “B3108 Winsley Bypass” published in November 2022.\n\nThat speeds are already on average in the same ballpark as proposed speed limits\n\nCost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips. TAG guidance reflect more value than time for an employed person using the road.\nThat a significant number of people live along the road, with numerous properties fronting onto the road."
+    "text": "The B3108 runs north of Winsley conurbation connecting Warminster Road in the West, with Bath Road in Bradford on Avon.\nThere have been on-going discussions regarding the speed limit on this road. This document aims to expand on some of the points mentioned in Briefing Note: “B3108 Winsley Bypass” published in November 2022.\n\nReducing the speed limit will significantly affect journey times.\nThe market cost of any increase in journey time is an issue.\nThat there are no properties fronting onto the road.\n\nThere are open questions about these assumptions:\n\nFew people simply travel along the 50mph section of road only (and if they did acceleration and deceleration would take up a significant proportion of that trip). Many journeys will be the full distance between Bath Road and Warminster Road. Congestion is a regular occurance at these sections\n\nMarket cost implications of slower speeds on journey times are balanced out by other costs, such as collision costs, noise and benefits from adding infrastructure to enable car free trips. TAG guidance reflect more value than time for an employed person using the road.\nThat a significant number of people live along the road, with numerous properties fronting onto the road."
   },
   {
     "objectID": "index.html#scenario-d",
@@ -112,31 +98,59 @@
     "text": "Noise\nThe calculation on noise is shown in the noise tab.The noise level from the vehicle counts and classes were estimated and adjusted to the facade of each building. The biggest impact would be in Winsley village with reductions of on average 2.8dB (equivalent to halving of total sound energy)."
   },
   {
-    "objectID": "noise.html",
-    "href": "noise.html",
-    "title": "B3108 Noise Analysis",
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
     "section": "",
-    "text": "The noise level at each building for each hour of a typical week has been calculated using the DfT AADT Count point 947637 along Winsley Hill, extrapolated with the typical diurnal profile using 946637 TRA0307 which gives the profile below:\n\nThese flows were applied to the full length of the road.\nThe noise level calculation is a screening assessment to compare between scenarios and estimate the costs benefit to the population.\nThis calculation does not include:\n\nGround absorption\n\nScreening / barriers\n\nReflections\n\nFaçade corrections\n\nRoad gradient\n\nRoad surface correction"
+    "text": "This site presents an analysis of vehicle speed data for the B3108 road, focusing on patterns, distributions, and insights derived from raw measurements. It was developed as an interactive Quarto website that visualizes and explores the analysis carried out.\nThe underlying data processing and analysis scripts are maintained in the associated GitHub repository, where all code used to generate the figures, process the raw data, and build the site is available. The repository contains the data cleaning, modelling, and plotting workflows that produce the content shown here. All the analysis, plotting and report generation were carried out using R.\nBy combining reproducible code with web-ready output, this project provides a transparent, open framework for exploring and understanding traffic speeds on the B3108 and can be extended or adapted to other road speed datasets."
   },
   {
-    "objectID": "noise.html#l03-winsley-hill",
-    "href": "noise.html#l03-winsley-hill",
-    "title": "B3108 Noise Analysis",
-    "section": "L03: Winsley Hill",
-    "text": "L03: Winsley Hill\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n\n\n\nnight time 23:00-07:00"
+    "objectID": "journey_time.html",
+    "href": "journey_time.html",
+    "title": "Journey time",
+    "section": "",
+    "text": "In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n  \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.   \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.   \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.    L05 is the 40 mph section of Winsley Road    L06 is the 30mph section of Winsley Road.   \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
   },
   {
-    "objectID": "noise.html#l04-winsley-by-pass",
-    "href": "noise.html#l04-winsley-by-pass",
-    "title": "B3108 Noise Analysis",
-    "section": "L04: Winsley by-pass",
-    "text": "L04: Winsley by-pass\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
+    "objectID": "journey_time.html#typical-speeds",
+    "href": "journey_time.html#typical-speeds",
+    "title": "Journey time",
+    "section": "",
+    "text": "In order to determine the typical speeds of vehicles travelling along the road the Google Distance API was used. This is a tool to estimate the journey time between two points for a future date based on historic data. Using the “best guess” parameters provides the most realistic single prediction available from the model by integrating real-time road conditions with historical patterns https://developers.google.com/maps/documentation/distance-matrix/distance-matrix. It returns the estimated time to travel this distance based on historic data. This has been compared against measured data and found to be a good representation of vehicle speed.\nThe road was split into 6 sections, based on the Open Street Map (OSM) segments, with some segments joined together to simplify the model and reduce the number of calls to the API. Described from West to East, Link 1 (L01) is the section of Lower Stoke Road that joins Warminster Road. The colour of each link is the mean speed in both directions as per the scale shown in L06 from the Google Distance Matrix API queries. Below each section plot is the speed profile split by direction.\n  \nL02 is the section from Midford Brook bridge to the base of Winsley Hill.   \nL03 is Winsley Hill up to where the speed limit currently changes to 50 mph, at the junction with Woodlands Drive.   \nL04 is the 50mph section of the bypass, stretching all the way to the roundabout with Winsley and Bradford Roads.    L05 is the 40 mph section of Winsley Road    L06 is the 30mph section of Winsley Road.   \nEach segment was queried for each hour of a future week, which was the week beginning 5th January 2026, in both directions for each of the 6 segments. This was 168 x 2 x 6 = 2,016 calls in total. Google provides 5,000 free calls per month, with further calls charged at 0.5 pence per call."
   },
   {
-    "objectID": "noise.html#l06-bradford-on-avon",
-    "href": "noise.html#l06-bradford-on-avon",
-    "title": "B3108 Noise Analysis",
-    "section": "L06: Bradford on Avon",
-    "text": "L06: Bradford on Avon\n\nBaseline situation by hour\nThis is the estimated noise exposure for each building within 200m \n\n\nday time 07:00-23:00\n ### night time 23:00-07:00"
+    "objectID": "journey_time.html#trip-data",
+    "href": "journey_time.html#trip-data",
+    "title": "Journey time",
+    "section": "Trip data",
+    "text": "Trip data\nThe DfT last estimated the trips along the B3108 at Winsley Hill in 2019 (https://roadtraffic.dft.gov.uk/count-points/947637). Prior to this a manual count was undertaken each year for the last 10 years. The manual count data in 2018 provides a diurnal profile for each vehicle and direction. The directional data estimated in 2019 has been combined with the diurnal profile.\nIn 2024 it was estimated that Annual Average Daily Trips (AADT) were similar to 2019. Therefore, 2019 traffic data has been used for this analysis.\nOn average 52% of vehicle traffic travels Eastbound. This reaches its peak at 6am when 74% of vehicles are travelling in this direction. At 5pm the majority (63%) of traffic flows in the Westbound direction."
+  },
+  {
+    "objectID": "journey_time.html#value-of-time",
+    "href": "journey_time.html#value-of-time",
+    "title": "Journey time",
+    "section": "Value of time",
+    "text": "Value of time\nDelay costs were estimated following UK Department for Transport Transport Analysis Guidance (TAG) using the following approach:\n\nTraffic Data: Annual Average Daily Traffic (AADT) by vehicle type and direction was obtained from DfT count point data for 2019. Hourly and daily traffic distributions were applied using TRA0307 data to estimate traffic volumes by hour, day of week, and - direction.\n\nJourney Purpose Allocation: Traffic was disaggregated by journey purpose (Work, Commuting, Other) using TAG Data Book Table A1.3.4, which provides the proportion of trips by purpose for different vehicle types and time periods.\n\nValues of Time: TAG Data Book Tables A1.3.1-A1.3.5 were applied by vehicle type, journey purpose, and time period to calculate an hourly cost rate for traffic flows (£/hour).\n\n\nThe tables A1.3.4 and A1.3.5 from TAG data book were imported and reshaped to give a timeseries for each hour of the day.\nTable A1.3.4\nThere are two methods for calculating time, per vehicle or per person. TAG table A1.3.3 gives estimates for occupancies of vehicles for time ranges during the week and weekend averages. However, this can become complicated when deciding trip reason for car occupants. Table A1.3.4 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nTable A1.3.5 is shown below, reshaped into a value for weekday or weekend for each hour for each vehicle type.\n\n\n\n\n\n\n\n\n\nThese tables are joined to the DfT AADT data to give one table with flows split by trip purpose and assigned a cost.\n\n\n\n\n\n\n\n\n\n\nJourney Time Analysis: estimates from the continuously updated Google distance API were used to calculate baseline journey times. Scenario journey times were calculated by capping speeds at scenario-specific limits and recalculating journey times for each road segment.\n\nDelay Cost Calculation: For each hour and direction, delay (in seconds) was calculated as the difference between scenario and baseline journey times, converted to hours, and multiplied by the hourly traffic cost rate to estimate total delay costs.\n\nhave been matched to trip data for the road, disaggregating each trip by estimated economic activity. This has been combined with the journey time estimates to provide a figure for the perceived loss to the economy\n\n\n\n\n\n\n\n\n\nThe cost per month is summarised in the table below for each scenario.\n\n\n\n\n\n\n\n\n\nCalculating for each scenario by direction gives:  \nThe TAG perceived loss to the market for each Scenario over the course of a year is:\n- A: £-30,969\n- B: £512,236\n- C: £648,602\n- D: £3,885,352\n\n   \nEvidence that uniform speed limits are less cognitively challenging\n20mph is most efficient speed for electric vehicles, saving drivers money."
+  },
+  {
+    "objectID": "other.html",
+    "href": "other.html",
+    "title": "B3108 Speed Limit Analysis",
+    "section": "",
+    "text": "Narrowing the road encourages people to drive more slowly. One way to achieve this is by adding high quality cycle and walking infrastructure to the road, such as the AI generated image below.  TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.\nUsing the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, could be quantified at over £30,000 per year to the 500+ cyclists who currently use the road every week. Adding this, along with a high quality footpath, could reduce the road width, also reduce the speed of vehicles down the road. It would also become an artery for active travel through the area.\nOne of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.\n(map of LSOA of drivers)\n\n\n\nThe image below shows an example of NO2 drop off calculated with the Defra NO2 drop off tool. NO2 reacts with the atmosphere and decreases (‘drops off’) relatively quickly from the roadside. Even without any changes to the vehicle fleet or number of vehicles using the road, it is estimated that increasing the source (vehicles) and receptor (buildings) distance by 2m NO2 would be 14% lower at the receptors \nTAG sheet A3.3 Table A 3.2.2 Gives a damage cost value range based on incremental concentrations. Assuming a roadside NO2 concentration between 10ug/m3 and 40ug/m3 and taking the lower and upper monetary estimates the benefit of reducing roadside concentrations by 14% for the population living next to the road would be between £1,546 and £239,733 just for NO2."
+  },
+  {
+    "objectID": "other.html#cycle-infrastructure-benefits",
+    "href": "other.html#cycle-infrastructure-benefits",
+    "title": "B3108 Speed Limit Analysis",
+    "section": "",
+    "text": "Narrowing the road encourages people to drive more slowly. One way to achieve this is by adding high quality cycle and walking infrastructure to the road, such as the AI generated image below.  TAG table 4.1.6 provides a cost benefit for cycle infrastructure to the cyclist based on the time spent cycling the infrastructure.\nUsing the DfT estimate for cyclists using the road each day, it is estimated that the benefit for adding a segregated cycle path along the full length of the B3108, assuming a cyclist travels at 5 metres per second, could be quantified at over £30,000 per year to the 500+ cyclists who currently use the road every week. Adding this, along with a high quality footpath, could reduce the road width, also reduce the speed of vehicles down the road. It would also become an artery for active travel through the area.\nOne of the takeaways from the analysis of STATS19 data on drivers involved in collisions on the road is that they generally live locally. Enabling people to undertake local journeys on foot or by bicycle will reduce the number of motor vehicles on the road.\n(map of LSOA of drivers)"
+  },
+  {
+    "objectID": "other.html#air-pollution",
+    "href": "other.html#air-pollution",
+    "title": "B3108 Speed Limit Analysis",
+    "section": "",
+    "text": "The image below shows an example of NO2 drop off calculated with the Defra NO2 drop off tool. NO2 reacts with the atmosphere and decreases (‘drops off’) relatively quickly from the roadside. Even without any changes to the vehicle fleet or number of vehicles using the road, it is estimated that increasing the source (vehicles) and receptor (buildings) distance by 2m NO2 would be 14% lower at the receptors \nTAG sheet A3.3 Table A 3.2.2 Gives a damage cost value range based on incremental concentrations. Assuming a roadside NO2 concentration between 10ug/m3 and 40ug/m3 and taking the lower and upper monetary estimates the benefit of reducing roadside concentrations by 14% for the population living next to the road would be between £1,546 and £239,733 just for NO2."
   }
 ]
