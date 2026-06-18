@@ -6,12 +6,14 @@ website:
   title: "B3108 speed anlaysis"
   navbar:
     left:
-      - href: report.qmd
+      - href: index.qmd
         text: Summary
       - href: journey_time.qmd
         text: Time
       - href: noise.qmd
         text: Noise
+      - href: other.qmd
+        text: Other
       - about.qmd
 
 format:
