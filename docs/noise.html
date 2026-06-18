@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Blaise Kelly">
-<meta name="dcterms.date" content="2026-02-16">
+<meta name="dcterms.date" content="2026-06-18">
 
 <title>B3108 Noise Analysis – B3108 speed anlaysis</title>
 <style>
@@ -207,7 +207,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 16, 2026</p>
+      <p class="date">June 18, 2026</p>
     </div>
   </div>
   
@@ -242,29 +242,19 @@ window.Quarto = {
 </section>
 <section id="vehicle-noise" class="level1">
 <h1>Vehicle Noise</h1>
-<p><span class="math inline">\(A_i\)</span> The vehicle-type–specific noise emission constant, referenced to a 10 m distance, taken from TAG / CRTN-based road traffic noise tables: Car = 27.7 LGV = 34.7 HGV = 39.7 <span class="math display">\[
-E_{i,10} = N_i \cdot 10^{\frac{A_i + 10 \log_{10}(v_i)}{10}}
-\]</span></p>
+<p><span class="math inline">\(A_i\)</span> The vehicle-type–specific noise emission constant, referenced to a 10 m distance, taken from TAG / CRTN-based road traffic noise tables: Car = 27.7 LGV = 34.7 HGV = 39.7 <span class="math display">\[E_{i,10} = N_i \cdot 10^{\frac{A_i + 10 \log_{10}(v_i)}{10}}\]</span></p>
 <p>where <span class="math inline">\(N_i\)</span> is the hourly traffic flow, <span class="math inline">\(v_i\)</span> is the mean speed (km h<span class="math inline">\(^{-1}\)</span>), which was calculated from the google API for each hour of a typical week.</p>
-<p>Summing up the outputs for each vehicle type: <span class="math display">\[
-E_{10} = \sum_i E_{i,10}
-\]</span> Gives the L10 values for each road segment. <span class="math display">\[
-L_{10} = 10 \log_{10}(E_{10})
-\]</span> <img src="plots/AADT_L10.png" class="img-fluid"> The 10m roadside value is propagated to the building façade. <span class="math display">\[
-L_{\text{build}} = L_{10} - 10 \log_{10}\left(\frac{r}{10}\right)
-\]</span> The buildings included in this calculation and their distance are shown for each road segment in the figure below</p>
+<p>Summing up the outputs for each vehicle type: <span class="math display">\[E_{10} = \sum_i E_{i,10}\]</span> Gives the L10 values for each road segment. <span class="math display">\[L_{10} = 10 \log_{10}(E_{10})\]</span> <img src="plots/AADT_L10.png" class="img-fluid"> The 10m roadside value is propagated to the building façade. <span class="math display">\[L_{\text{build}} = L_{10} - 10 \log_{10}\left(\frac{r}{10}\right)\]</span> The buildings included in this calculation and their distance are shown for each road segment in the figure below</p>
 <p>where:</p>
 <p>and <span class="math inline">\(r\)</span> is the horizontal distance from the road to the building façade (m). the from the road to the building (m).</p>
-<p>And aggregating to assessment periods: <span class="math display">\[
-L_{\mathrm{Aeq},P}
+<p>And aggregating to assessment periods: <span class="math display">\[L_{\mathrm{Aeq},P}
 =
 10 \log_{10}
 \left(
 \frac{1}{N_P}
 \sum_{i=1}^{N_P}
 10^{L_{\mathrm{Aeq},1h,i}/10}
-\right)
-\]</span> The current noise exposure by hour is estimated</p>
+\right)\]</span> The current noise exposure by hour is estimated</p>
 <p>The scenarios are described in the section The changes in noise for the main segments are shown below:</p>
 <section id="l03-winsley-hill" class="level2">
 <h2 class="anchored" data-anchor-id="l03-winsley-hill">L03: Winsley Hill</h2>
